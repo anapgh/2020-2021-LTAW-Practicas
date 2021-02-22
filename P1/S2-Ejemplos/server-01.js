@@ -9,7 +9,7 @@ for (p in http) {
 }
 
 //-- Creamos el servidor: http.createServer()
-http.createServer
+const server = http.createServer();
 
 //-- Funcion de retrollamada para atender peticiones
 //-- Función de retrollamada de petición recibida
