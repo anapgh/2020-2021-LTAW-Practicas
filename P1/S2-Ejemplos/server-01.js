@@ -23,3 +23,7 @@ function atender(req, res) {
 
     //-- pero no enviamos respusta (todavía)
 }
+
+//-- Configuramos la funcion de retrollamada
+//-- Activar la función de retrollamada del servidor
+server.on('request', atender);
