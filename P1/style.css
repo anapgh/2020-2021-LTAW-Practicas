@@ -1,0 +1,35 @@
+head{
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+}
+
+body{
+    background-color: rgba(250, 121, 192, 0.548);
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+}
+
+#Logo-tarta{
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 60px;
+
+}
+#Logo-galleta{
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 60px;
+
+}
+#Logo-donuts{
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 60px;
+
+}
+#Logo-magdalena{
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 60px;
+
+}
