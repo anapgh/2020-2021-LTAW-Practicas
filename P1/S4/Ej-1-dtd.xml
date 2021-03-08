@@ -25,6 +25,13 @@
         <descripcion>Placa con FPGA ice40HX8K</descripcion>
         <stock>3</stock>
     </producto>
+
+    <producto>
+        <nombre>Icestick</nombre>
+        <descripcion>Placa con FPGA ice40HX1K</descripcion>
+        <stock>10</stock>
+    </producto>
+
     
     
 </tienda>
