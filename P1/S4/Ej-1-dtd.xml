@@ -12,7 +12,9 @@
     <!ELEMENT tienda (producto+)>
     <!-- Ahora quiero el producto tenga descripción
         nombre y stock-->
-    <!ELEMENT producto (nombre, descripcion, stock)>
+    <!-- Si quiero que un campo sea opcional
+        debo poner el sufijo ? (ninguno o varios-->
+    <!ELEMENT producto (nombre, descripcion?, stock)>
     <!ELEMENT nombre (#PCDATA)>
     <!ELEMENT descripcion (#PCDATA)>
     <!ELEMENT stock (#PCDATA)>
@@ -28,7 +30,7 @@
 
     <producto>
         <nombre>Icestick</nombre>
-        <descripcion>Placa con FPGA ice40HX1K</descripcion>
+        
         <stock>10</stock>
     </producto>
 
