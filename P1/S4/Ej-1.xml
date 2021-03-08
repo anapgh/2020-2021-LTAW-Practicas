@@ -2,16 +2,18 @@
 
 <!-- Estructura de mi tienda -->
 <!-- El elemento raiz-->
-<tienda xmlns="http://anapgh.github.io/Tienda-1">
+<tienda xmlns:t1="http://anapgh.github.io/Tienda-1"
+        xmlns:t2="http://w3c.definitions/Store/es">
 
      <!-- Dentro de mi tienda hay
           diferentes productos--> 
-    <producto>
+    <t1:producto>
         Un producto
-    </producto>
+    </t1:producto>
 
-    <producto>
+    <t2:producto>
         Otro poducto
-    </producto>
+    </t2:producto>
+        
 
 </tienda>
