@@ -2,7 +2,7 @@
 
 <!-- Estructura de mi tienda -->
 <!-- El elemento raiz-->
-<tienda>
+<tienda xmlns="http://anapgh.github.io/Tienda-1">
 
      <!-- Dentro de mi tienda hay
           diferentes productos--> 
@@ -13,5 +13,5 @@
     <producto>
         Otro poducto
     </producto>
-    
+
 </tienda>
