@@ -6,12 +6,17 @@
     y dentro de ella solo puede meter cadena de texto -->
 
 <!DOCTYPE tienda [
-    <!ELEMENT tienda (producto)>
+    <!-- Dentro de tienda debe tener 1 producto -->
+    <!-- Si quiero que tenga más de 1 producto
+        Le añado un sufijo + --> 
+    <!ELEMENT tienda (producto+)>
     <!ELEMENT producto (#PCDATA)>
 ]>
 
 <!-- Ejemplo de uso del lenguaje-->
 <tienda>
     <producto>Un producto</producto>
+    <producto>este es otro producto</producto>
+    <producto>Otro mas</producto>
     
 </tienda>
