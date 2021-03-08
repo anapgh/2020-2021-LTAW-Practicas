@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- defino el lenguaje que quiero
+    (Gramatica)
+    Un lenguaje que solo tiene la mmarca raiz
+    y dentro de ella solo puede meter cadena de texto -->
+
+<!DOCTYPE root-element [
+    <!ELEMENT tienda (#PCDATA)>
+]>
+
+<!-- Ejemplo de uso del lenguaje-->
+<tienda>
+    Esta es mi tienda
+</tienda>
