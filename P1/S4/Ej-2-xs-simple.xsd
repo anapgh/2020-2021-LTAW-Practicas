@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Me sale los tipos de datos que puedo usar -->
+<!-- La etiqueta raiz es schema, que es de tipo elemento
+    que se lalma tienda-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="tienda" type="xs:string">
+        
+    </xs:element>
+</xs:schema> 
