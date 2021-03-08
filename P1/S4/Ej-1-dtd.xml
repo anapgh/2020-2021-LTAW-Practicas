@@ -10,13 +10,21 @@
     <!-- Si quiero que tenga más de 1 producto
         Le añado un sufijo + --> 
     <!ELEMENT tienda (producto+)>
-    <!ELEMENT producto (#PCDATA)>
+    <!-- Ahora quiero el producto tenga descripción
+        nombre y stock-->
+    <!ELEMENT producto (nombre, descripcion, stock)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT descripcion (#PCDATA)>
+    <!ELEMENT stock (#PCDATA)>
 ]>
 
 <!-- Ejemplo de uso del lenguaje-->
 <tienda>
-    <producto>Un producto</producto>
-    <producto>este es otro producto</producto>
-    <producto>Otro mas</producto>
+    <producto>
+        <nombre>Alhambra II</nombre>
+        <descripcion>Placa con FPGA ice40HX8K</descripcion>
+        <stock>3</stock>
+    </producto>
+    
     
 </tienda>
