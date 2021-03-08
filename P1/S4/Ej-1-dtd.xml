@@ -13,7 +13,7 @@
     <!-- Ahora quiero el producto tenga descripción
         nombre y stock-->
     <!-- Si quiero que un campo sea opcional
-        debo poner el sufijo ? (ninguno o varios-->
+        debo poner el sufijo ? (ninguno o uno-->
     <!ELEMENT producto (nombre, descripcion?, stock)>
     <!ELEMENT nombre (#PCDATA)>
     <!ELEMENT descripcion (#PCDATA)>
@@ -30,7 +30,6 @@
 
     <producto>
         <nombre>Icestick</nombre>
-        
         <stock>10</stock>
     </producto>
 
