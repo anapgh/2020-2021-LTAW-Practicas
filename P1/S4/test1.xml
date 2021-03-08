@@ -1,3 +1,9 @@
+
+<!-- Esto es un comentario de una linea -->
+<!-- esto es un comebtario
+    de varias
+    lineas -->
+
 <pirulo>
     <mengulo attr1="mi_atributo">
         un mengulo
