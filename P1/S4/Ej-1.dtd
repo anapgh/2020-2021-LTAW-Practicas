@@ -1,0 +1,12 @@
+    <!-- Dentro de tienda debe tener 1 producto -->
+    <!-- Si quiero que tenga más de 1 producto
+        Le añado un sufijo + --> 
+        <!ELEMENT tienda (producto+)>
+        <!-- Ahora quiero el producto tenga descripción
+            nombre y stock-->
+        <!-- Si quiero que un campo sea opcional
+            debo poner el sufijo ? (ninguno o uno-->
+        <!ELEMENT producto (nombre, descripcion?, stock)>
+        <!ELEMENT nombre (#PCDATA)>
+        <!ELEMENT descripcion (#PCDATA)>
+        <!ELEMENT stock (#PCDATA)>
