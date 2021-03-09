@@ -20,7 +20,7 @@ body{
 }
 
 #Barra{
-    text-align:center;
+    text-align: center;
     background-color:rgba(255, 255, 255, 0.493);
     margin: 20px 100px 20px 100px;
     border-width: 3px;
@@ -40,7 +40,7 @@ b:hover {
 }
 
 #informacion{
-    text-align:center;
+    text-align: center;
     background-image:url(imagenes/fondop1.jpg);
     margin: 50px 100px 100px 100px;
     border-width: 3px;
@@ -48,7 +48,7 @@ b:hover {
 }
 
 h3{
-    text-align:center;
+    text-align: center;
     background-color:rgba(255, 255, 255, 0.493);
     margin: 5px 400px 5px 400px;
     border-width: 3px;
