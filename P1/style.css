@@ -4,32 +4,77 @@ head{
 }
 
 body{
-    background-color: rgba(250, 121, 192, 0.548);
+    background-image: url(fondo5.jpg);
+    background-size: cover;
     font-family: "Brush Script MT", cursive;
     font-size: 30px;
+    
+
+}
+
+#Logo-tienda{
+    width: 360px; 
+    height: 190px;
+    margin-left: 420px;
+    margin-right: 420px;
+}
+
+#productos{
+    text-align:center;
+    background-image:url(fondop1.jpg);
+    margin: 50px 100px 100px 100px;
+    border-width: 3px;
+    border-radius: 60px;
+    
 }
 
 #Logo-tarta{
     border-style: solid;
     border-width: 3px;
     border-radius: 60px;
+    margin: 30px 20px 30px 20px;
+    
 
 }
+
 #Logo-galleta{
     border-style: solid;
     border-width: 3px;
     border-radius: 60px;
+    margin: 30px 20px 30px 20px;
 
 }
 #Logo-donuts{
     border-style: solid;
     border-width: 3px;
     border-radius: 60px;
+    margin: 30px 20px 30px 20px;
 
 }
 #Logo-magdalena{
     border-style: solid;
     border-width: 3px;
     border-radius: 60px;
+    margin: 30px 20px 30px 20px;
 
+}
+
+#Logo-carro{
+    width: 45px; 
+    height: 35px;
+
+}
+
+#Barra{
+    text-align:center;
+    background-color:rgba(255, 255, 255, 0.493);
+    margin: 20px 100px 20px 100px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+b{
+    padding-left: 80px;
+    padding-right: 80px;
+    text-align: center;
+    
 }
