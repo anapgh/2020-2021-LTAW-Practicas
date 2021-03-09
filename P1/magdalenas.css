@@ -52,7 +52,6 @@ body{
     border-radius: 30px;
 }
 
-
 #Logo-carro{
     width: 45px; 
     height: 35px;
@@ -72,6 +71,12 @@ b{
     padding-left: 80px;
     padding-right: 80px;
     text-align: center;
+}
+
+b:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    background: #8cc7e9;
+    border-radius: 60px;
 }
 
 h3{

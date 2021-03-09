@@ -32,11 +32,21 @@ body{
     margin: 30px 20px 30px 20px;
 }
 
+#Logo-tarta:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    border-radius: 60px;
+}
+
 #Logo-galleta{
     border-style: solid;
     border-width: 3px;
     border-radius: 60px;
     margin: 30px 20px 30px 20px;
+}
+
+#Logo-galleta:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    border-radius: 60px;
 }
 
 #Logo-donuts{
@@ -46,11 +56,21 @@ body{
     margin: 30px 20px 30px 20px;
 }
 
+#Logo-donuts:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    border-radius: 60px;
+}
+
 #Logo-magdalena{
     border-style: solid;
     border-width: 3px;
     border-radius: 60px;
     margin: 30px 20px 30px 20px;
+}
+
+#Logo-magdalena:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    border-radius: 60px;
 }
 
 #Logo-carro{
@@ -70,5 +90,11 @@ b{
     padding-left: 80px;
     padding-right: 80px;
     text-align: center;
+}
+
+b:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    background: #8cc7e9;
+    border-radius: 60px;
 }
 
