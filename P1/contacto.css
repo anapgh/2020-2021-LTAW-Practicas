@@ -1,0 +1,67 @@
+body{
+    background-image: url(imagenes/fondo5.jpg);
+    background-size: cover;
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+}
+
+#Logo-tienda{
+    width: 360px; 
+    height: 190px;
+    margin-left: 420px;
+    margin-right: 420px;
+}
+
+#Logo-carro{
+    width: 45px; 
+    height: 35px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+
+#Barra{
+    text-align:center;
+    background-color:rgba(255, 255, 255, 0.493);
+    margin: 20px 100px 20px 100px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+
+b{
+    padding-left: 80px;
+    padding-right: 80px;
+    text-align: center;
+}
+
+b:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    background: #8cc7e9;
+    border-radius: 60px;
+}
+
+#informacion{
+    text-align:center;
+    background-image:url(imagenes/fondop1.jpg);
+    margin: 50px 100px 100px 100px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+
+h3{
+    text-align:center;
+    background-color:rgba(255, 255, 255, 0.493);
+    margin: 5px 400px 5px 400px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+
+#github{
+    width: 480px; 
+    height: 480px;
+}
+
+#github:hover{
+    border:rgb(123, 173, 230) 5px solid;
+    border-radius: 60px;
+}
+

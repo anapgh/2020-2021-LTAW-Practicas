@@ -3,28 +3,36 @@
 //-- Importo los modulos http y fs
 const http = require('http');
 const fs = require('fs');
+const url = require('url');
+
 
 //-- Definir el puerto a utilizar
-const PUERTO = 8080;
+const PUERTO = 9000;
 
-//-- Crear el servidor
-const server = http.createServer((req, res) => {
-    
-  //-- Indicamos que se ha recibido una petición
-  console.log("Petición recibida!");
+//-- Cargamos la pagina de html
+//-- Hacemos una lectura asincrona
+const pagina = fs.readFile('tienda.html','utf8', (err, data) => {
 
-  //-- Cabecera que indica el tipo de datos del
-  //-- cuerpo de la respuesta: Texto plano
-  res.setHeader('Content-Type', 'text/plain');
-
-  //-- Mensaje del cuerpo
-  res.write("Soy tu tienda on-line\n");
-
-  //-- Terminar la respuesta y enviarla
-  res.end();
+    //-- Cuando los datos están ya disponibles
+    //-- los mostramos en la consola
+    console.log("Lectura completada...")
+    console.log("Contenido del fichero: \n")
+    console.log(data);
 });
 
-//-- Activar el servidor: 
+//-- Creamos el servidor
+const server = http.createServer((req, res)=>{
+    console.log("Petición recibida!");
+
+    res.statusCode = 200;
+    res.statusMessage = "OK";
+    res.setHeader('Content-Type','text/html');
+    res.write(pagina); //-- Devuelvo ahora texto el HTML!!
+    res.end();
+});
+
+//--Escuchamos en el puerto
 server.listen(PUERTO);
+
 
 console.log("Tienda on-line activada!. Escuchando en puerto: " + PUERTO);
