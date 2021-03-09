@@ -1,0 +1,98 @@
+head{
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+}
+
+body{
+    background-image: url(fondo5.jpg);
+    background-size: cover;
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+    
+}
+
+#Logo-tienda{
+    width: 360px; 
+    height: 190px;
+    margin-left: 420px;
+    margin-right: 420px;
+ 
+    
+}
+
+#productos{
+    text-align: center;
+    background-image:url(fondop1.jpg);
+    margin: 50px 100px 100px 100px;
+    border-width: 3px;
+    border-radius: 60px;
+    padding-left: 20px;
+   
+}
+.producto1{
+    position: absolute;
+    width: 40%;
+    height: 25%;    
+}
+
+.producto2{
+    position: relative;
+    width: 150%;
+    height: 25%;   
+}
+
+.producto3{
+    position: absolute;
+    width: 40%;
+    height: 200%; 
+}
+
+.producto4{
+    position:relative;
+    width: 150%;
+    height: 50%; 
+}
+
+#tarta1{
+    width: 230px; 
+    height: 200px;
+
+}
+
+#tarta2{
+    width: 250px; 
+    height: 180px;
+    
+}
+
+#tarta3{
+    width: 250px; 
+    height: 180px;
+}
+
+#tarta4{
+    width: 250px; 
+    height: 180px;
+}
+
+#Logo-carro{
+    width: 45px; 
+    height: 35px;
+    border-width: 3px;
+    border-radius: 60px;
+
+}
+
+#Barra{
+    text-align:center;
+    background-color:rgba(255, 255, 255, 0.493);
+    margin: 20px 100px 20px 100px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+b{
+    padding-left: 80px;
+    padding-right: 80px;
+    text-align: center;
+    
+}
