@@ -1,8 +1,8 @@
 body{
-    background-image: url(fondo5.jpg);
+    background-image: url(imagenes/fondo5.jpg);
     background-size: cover;
     font-family: "Brush Script MT", cursive;
-    font-size: 30px; 
+    font-size: 30px;
 }
 
 #Logo-tienda{
@@ -13,14 +13,13 @@ body{
 }
 
 #productos{
-    text-align: center;
-    background-image:url(fondop1.jpg);
-    margin: 30px 100px 100px 100px;
+    text-align:center;
+    background-image:url(imagenes/fondop1.jpg);
+    margin: 50px 100px 100px 100px;
     border-width: 3px;
     border-radius: 60px;
-    padding-left: 20px;
-   
 }
+
 #producto1{
     position: absolute;
     width: 40%;
@@ -45,6 +44,30 @@ body{
     height: 50%; 
 }
 
+#producto5{
+    position: absolute;
+    width: 40%;
+    height: 200%; 
+}
+
+#producto6{
+    position:relative;
+    width: 150%;
+    height: 50%; 
+}
+
+#producto7{
+    position: absolute;
+    width: 40%;
+    height: 200%; 
+}
+
+#producto8{
+    position:relative;
+    width: 150%;
+    height: 50%; 
+}
+
 .tartas{
     width: 250px; 
     height: 180px;
@@ -57,7 +80,6 @@ body{
     height: 35px;
     border-width: 3px;
     border-radius: 60px;
-
 }
 
 #Barra{
