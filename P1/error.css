@@ -1,0 +1,18 @@
+body{
+    background-image: url(imagenes/fondo5.jpg);
+    background-size: cover;
+    font-family: "Brush Script MT", cursive;
+    font-size: 30px;
+}
+
+
+#error{
+    text-align: center;
+    width: 100%;
+    margin-top: 150px;
+}
+
+
+
+
+
