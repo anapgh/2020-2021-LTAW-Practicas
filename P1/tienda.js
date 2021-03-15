@@ -5,37 +5,43 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 
-
 //-- Definir el puerto a utilizar
 const PUERTO = 9000;
 
+//-- Mensaje de arranque
 console.log("Arrancando servidor...")
-//var fs=require('fs');
-//var data=fs.readFileSync('products.json', 'utf8');
-//var words=JSON.parse(data);
-//MIRAR SI FUNCIONA POR QUE ESTO ES UNA MIERDA....
-http.createServer(function (req, res) {
-  var q = url.parse(req.url, true);
-  var filename = "." + q.pathname;
 
-  if (q.pathname == ('/')){
-    filename = "tienda.html";
+//-- Crear el sevidor
+const server = http.createServer(function (req, res) {
+
+  //-- Indicamos que se ha recibido una peticion
+  console.log("Peticion Recibida");
+
+  //-- Creamos el objeto URL del mensaje de solitud (req)
+  //-- cogemos el recurso (url)
+  let myURL = url.parse(req.url, true);
+
+  //-- Escribimos en consola la ruta de nuestro recurso
+  console.log("Recurso recibido: " + myURL.pathname)
+
+  //-- Definimos una variable fichero
+  let filename = ""
+
+  //-- Sacamos la ruta (pathname)
+  //-- Comprobamos si la rut es elemento raiz
+  if (myURL.pathname == "/"){
+    filename += "/tienda.html"  //-- Abrimos la pagina principal
+  }else{
+    filename += myURL.pathname  //-- Abrimos la ruta solicitada
   }
+
+  //-- Ruta asignada
+  console.log('Ruta: ' + filename)
   
-  fs.readFile(filename, function(err, data){
+});
 
-    //Control por si el server no funciona.
-    if (err){
-      res.writeHead(404, {'Content-Type': 'text/html'});
-      return res.end("404 Not Fount");
-    }
+//-- Activar el servidor
+server.listen(PUERTO);
 
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  res.write(data);
-  res.end();
-  console.log("Peticion Atendida")
-  });
-}).listen(PUERTO);
-
-
+//-- Mensaje de inicio
 console.log("Tienda on-line activada!. Escuchando en puerto: " + PUERTO);
