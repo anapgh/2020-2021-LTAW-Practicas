@@ -9,7 +9,20 @@ body{
 #error{
     text-align: center;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 70px;
+}
+
+#inicio{
+    text-align: center;
+    background-color:rgba(255, 255, 255, 0.493);
+    margin: 20px 250px 5px 250px;
+    border-width: 3px;
+    border-radius: 60px;
+}
+#inicio:hover {
+    border:rgb(123, 173, 230) 5px solid;
+    background: #8cc7e9;
+    border-radius: 60px;
 }
 
 
