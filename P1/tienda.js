@@ -1,6 +1,6 @@
-// -- PRACTICA 1: TIENDA ON-LINE
+// -- PRACTICA 1: TIENDA ON-LINE CON NODE.JS
 
-//-- Importo los modulos http, fs y url
+//-- Importar los modulos http, fs y url
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
@@ -14,39 +14,39 @@ console.log("Arrancando servidor...");
 //-- Crear el sevidor
 const server = http.createServer(function (req, res) {
 
-  //-- Indicamos que se ha recibido una peticion
+  //-- Indicar que se ha recibido una peticion
   console.log("Peticion Recibida");
 
-  //-- Creamos el objeto URL del mensaje de solitud (req)
-  //-- cogemos el recurso (url)
+  //-- Crear el objeto URL del mensaje de solitud (req)
+  //-- y coger el recurso (url)
   let myURL = url.parse(req.url, true);
 
-  //-- Escribimos en consola la ruta de nuestro recurso
+  //-- Escribir en consola la ruta de nuestro recurso
   console.log("Recurso recibido: " + myURL.pathname);
 
-  //-- Definimos una variable fichero
+  //-- Definir la variable fichero
   let filename = "";
 
-  //-- Sacamos la ruta (pathname)
-  //-- Comprobamos si la rut es elemento raiz
+  //-- Obtener la ruta (pathname)
+  //-- Comprobar si la ruta es elemento raiz
   //-- Obtener fichero a devolver
   if (myURL.pathname == "/"){
-    filename += "tienda.html";  //-- Abrimos la pagina principal
+    filename += "tienda.html";  //-- Abrir la pagina principal
   }else{
-    filename += myURL.pathname.substr(1);  //-- Abrimos la ruta solicitada
+    filename += myURL.pathname.substr(1);  //-- Abrir el fichero solicitado
   }
 
   //-- Ruta asignada
-  console.log('Ruta: ' + filename);
+  console.log('Fichero a devolver: ' + filename);
   
-  //-- Extraigo el tipo de mime que es la ruta
-  //-- me quedo con la extenson
+  //-- Extraer el tipo de mime que es la ruta
+  //-- y quedarse con la extenson
   let ext = filename.split(".")[1];
 
-  //-- Escribimos el tipo de mime pedido
+  //-- Escribir el tipo de mime solicitado
   console.log('Tipo de dato pedido: ' + ext);
 
-  //-- Definimos los tipos de mime
+  //-- Definir los tipos de mime
   const mimeType = {
     "html" : "text/html",
     "css"  : "text/css",
@@ -58,23 +58,23 @@ const server = http.createServer(function (req, res) {
     "ico"  : "image/x-icon"
   };
 
-  //-- Asignamos que tipo de mime leer
+  //-- Asignar que tipo de mime leer
   let mime = mimeType[ext];
-  console.log("mime: " + mime);
+  console.log("Tipo de mime solicitado: " + mime);
 
   fs.readFile(filename, function(err, data){
     //-- Controlar si la pagina es no encontrada.
-    //-- Devolvemos nuesta pagina de error, 404 NOT FOUND
+    //-- Devolver pagina de error personalizada, 404 NOT FOUND
     if ((err) || (filename == 'error.html')){
       res.writeHead(404, {'Content-Type': mime});
       console.log("Not found");
     }else{
       //-- Todo correcto
-      //-- Manda el mensaje 200 OK
+      //-- Mandar el mensaje 200 OK
       res.writeHead(200, {'Content-Type': mime});
       console.log("Peticion Atendida, 200 OK");
     } 
-    //-- Enviamos los datos del fichero solicitado  
+    //-- Enviar los datos del fichero solicitado  
     res.write(data);
     res.end();
   });
