@@ -37,17 +37,27 @@ const server = http.createServer(function (req, res) {
 
   //-- Ruta asignada
   console.log('Ruta: ' + filename)
-  
-
 
   //-- Extraigo el tipo de mime que es la ruta
   //-- me quedo con la extenson
-  let mime = filename.split(".")[1]
+  let ext = filename.split(".")[1]
 
   //-- Escribimos el tipo de mime pedido
-  console.log('mime pedido: ' + mime)
+  console.log('Tipo de dato pedido: ' + ext)
 
- 
+  //-- Definimos los tipos de mime
+  const mimeType = {
+    "html" : "text/html",
+    "css"  : "text/css",
+    "jpg"  : "image/jpg",
+    "jpeg" : "image/jpeg",
+    "png"  : "image/png",
+    "gif"  : "image/gif"
+  }
+
+  //-- Asignamos que tipo de mime leer
+  let mime = mimeType[ext]
+  console.log("mime: " + mime)
 
 
 });
