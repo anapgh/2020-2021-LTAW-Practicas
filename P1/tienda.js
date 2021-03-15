@@ -59,11 +59,27 @@ const server = http.createServer(function (req, res) {
   let mime = mimeType[ext]
   console.log("mime: " + mime)
 
-
+  fs.readFile(filename, function(err, data){
+   
+    //-- Controlar si la pagina es no encontrada.
+    //-- Devolvemos nuesta pagina de error, 404 NOT FOUND
+    if (err){
+      res.writeHead(404, {'Content-Type': mime});
+      console.log("Not found")
+    }else{
+      //-- Todo correcto
+      //-- Manda el mensaje 200 OK
+      res.writeHead(200, {'Content-Type': mime});
+      console.log("Peticion Atendida, 200 OK")
+    } 
+    //-- Enviamos los datos del fichero solicitado  
+    res.write(data);
+    res.end();
+  });
 });
 
 //-- Activar el servidor
 server.listen(PUERTO);
 
 //-- Mensaje de inicio
-console.log("Tienda on-line activada!. Escuchando en puerto: " + PUERTO);
+console.log("La Pastelería de Ana pi!. Escuchando en puerto: " + PUERTO);
