@@ -29,6 +29,7 @@ const server = http.createServer(function (req, res) {
 
   //-- Sacamos la ruta (pathname)
   //-- Comprobamos si la rut es elemento raiz
+  //-- Obtener fichero a devolver
   if (myURL.pathname == "/"){
     filename += "/tienda.html"  //-- Abrimos la pagina principal
   }else{
@@ -37,7 +38,7 @@ const server = http.createServer(function (req, res) {
 
   //-- Ruta asignada
   console.log('Ruta: ' + filename)
-
+ 
   //-- Extraigo el tipo de mime que es la ruta
   //-- me quedo con la extenson
   let ext = filename.split(".")[1]
@@ -50,9 +51,11 @@ const server = http.createServer(function (req, res) {
     "html" : "text/html",
     "css"  : "text/css",
     "jpg"  : "image/jpg",
+    "JPG"  : "image/jpg",
     "jpeg" : "image/jpeg",
     "png"  : "image/png",
-    "gif"  : "image/gif"
+    "gif"  : "image/gif",
+    "ico"  : "image/x-icon"
   }
 
   //-- Asignamos que tipo de mime leer
@@ -60,7 +63,6 @@ const server = http.createServer(function (req, res) {
   console.log("mime: " + mime)
 
   fs.readFile(filename, function(err, data){
-   
     //-- Controlar si la pagina es no encontrada.
     //-- Devolvemos nuesta pagina de error, 404 NOT FOUND
     if (err){
