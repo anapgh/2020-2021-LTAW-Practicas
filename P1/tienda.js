@@ -38,6 +38,18 @@ const server = http.createServer(function (req, res) {
   //-- Ruta asignada
   console.log('Ruta: ' + filename)
   
+
+
+  //-- Extraigo el tipo de mime que es la ruta
+  //-- me quedo con la extenson
+  let mime = filename.split(".")[1]
+
+  //-- Escribimos el tipo de mime pedido
+  console.log('mime pedido: ' + mime)
+
+ 
+
+
 });
 
 //-- Activar el servidor
