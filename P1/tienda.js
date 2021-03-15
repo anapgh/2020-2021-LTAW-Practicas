@@ -65,7 +65,7 @@ const server = http.createServer(function (req, res) {
   fs.readFile(filename, function(err, data){
     //-- Controlar si la pagina es no encontrada.
     //-- Devolvemos nuesta pagina de error, 404 NOT FOUND
-    if (err){
+    if ((err) || (filename == 'error.html')){
       res.writeHead(404, {'Content-Type': mime});
       console.log("Not found");
     }else{
