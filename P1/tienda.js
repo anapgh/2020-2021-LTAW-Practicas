@@ -1,6 +1,6 @@
 // -- PRACTICA 1: TIENDA ON-LINE
 
-//-- Importo los modulos http y fs
+//-- Importo los modulos http, fs y url
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
@@ -9,30 +9,33 @@ const url = require('url');
 //-- Definir el puerto a utilizar
 const PUERTO = 9000;
 
-//-- Cargamos la pagina de html
-//-- Hacemos una lectura asincrona
-const pagina = fs.readFile('tienda.html','utf8', (err, data) => {
+console.log("Arrancando servidor...")
+//var fs=require('fs');
+//var data=fs.readFileSync('products.json', 'utf8');
+//var words=JSON.parse(data);
+//MIRAR SI FUNCIONA POR QUE ESTO ES UNA MIERDA....
+http.createServer(function (req, res) {
+  var q = url.parse(req.url, true);
+  var filename = "." + q.pathname;
 
-    //-- Cuando los datos están ya disponibles
-    //-- los mostramos en la consola
-    console.log("Lectura completada...")
-    console.log("Contenido del fichero: \n")
-    console.log(data);
-});
+  if (q.pathname == ('/')){
+    filename = "tienda.html";
+  }
+  
+  fs.readFile(filename, function(err, data){
 
-//-- Creamos el servidor
-const server = http.createServer((req, res)=>{
-    console.log("Petición recibida!");
+    //Control por si el server no funciona.
+    if (err){
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Fount");
+    }
 
-    res.statusCode = 200;
-    res.statusMessage = "OK";
-    res.setHeader('Content-Type','text/html');
-    res.write(pagina); //-- Devuelvo ahora texto el HTML!!
-    res.end();
-});
-
-//--Escuchamos en el puerto
-server.listen(PUERTO);
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.write(data);
+  res.end();
+  console.log("Peticion Atendida")
+  });
+}).listen(PUERTO);
 
 
 console.log("Tienda on-line activada!. Escuchando en puerto: " + PUERTO);
