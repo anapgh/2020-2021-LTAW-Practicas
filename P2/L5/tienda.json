@@ -1,0 +1,77 @@
+[
+    {
+        "productos": [
+                        {
+                            "nombre": "tartas",
+                            "descripcion": "producto 1",
+                            "stock": 20
+                        },
+                        {
+                            "nombre": "galletas",
+                            "descripcion": "producto 2",
+                            "stock": 100
+                        },
+                        {
+                            "nombre": "donuts",
+                            "descripcion": "producto 3",
+                            "stock": 50
+                        },
+                        {
+                            "nombre": "magdalenas",
+                            "descripcion": "producto 4",
+                            "stock": 60
+                         }
+                    ]      
+    },
+    {
+        "usuarios": [ 
+                        {
+                            "nombre": "anapgh",
+                            "real": "Ana Poveda",
+                            "email": "jeje@"
+
+                        },
+                        {
+                            "nombre": "root",
+                            "real": "rotito",
+                            "email": "jaja@"
+                        }
+                    ]
+    },
+    {
+        "pedidos": [
+                        {   
+                            "usuario": "anapgh",
+                            "tarjeta": 1345,
+                            "productos": [
+                                            {
+                                                "producto": "tarta",
+                                                "unidades": 2
+                                            },
+                                            {
+                                                "producto": "donuts",
+                                                "unidades": 6
+                                            }
+                                         ]
+                        }, 
+                        {   
+                            "usuario": "root",
+                            "tarjeta": 6789,
+                            "productos": [
+                                            {
+                                                "producto": "galletas",
+                                                "unidades": 9
+                                            },
+                                            {
+                                                "producto": "magdalenas",
+                                                "unidades": 6
+                                            },
+                                            {
+                                                "producto": "tarta",
+                                                "unidades": 1
+                                            }
+                                         ]
+                        }
+                   ]
+    }
+]
