@@ -14,22 +14,25 @@ const RESPUESTA = fs.readFileSync('form1-resp.html', 'utf-8');
 const server = http.createServer((req, res) => {
 
   //-- Construir el objeto url con la url de la solicitud
+  //-- De aqui leo los metodo de la URL
   const myURL = new URL(req.url, 'http://' + req.headers['host']);  
   console.log("");
-  console.log("Método: " + req.method);
-  console.log("Recurso: " + req.url);
-  console.log("  Ruta: " + myURL.pathname);
-  console.log("  Parametros: " + myURL.searchParams);
+  console.log("Método: " + req.method); //-- metodo
+  console.log("Recurso: " + req.url); //-- recurso
+  console.log("  Ruta: " + myURL.pathname); //-- ruta sin parametros
+  console.log("  Parametros: " + myURL.searchParams); //-- parametos separados
 
   //-- Por defecto entregar formulario
-  let content_type = "text/html";
-  let content = FORMULARIO;
+  let content_type = "text/html"; //-- le digo de que tipo es
+  let content = FORMULARIO; //-- aqui por defecto siempre devolvemos el formulario
 
+  //-- En el caso de ir /procesar mandar la respuesta
   if (myURL.pathname == '/procesar') {
       content_type = "text/html";
       content = RESPUESTA;
   }
 
+  //-- Esto es un stream de flujo de datos
   //-- Si hay datos en el cuerpo, se imprimen
   req.on('data', (cuerpo) => {
 
