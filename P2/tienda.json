@@ -45,6 +45,7 @@
                         {   
                             "usuario": "anapgh",
                             "tarjeta": 1345,
+                            "direccion": "en mi casa, Nº 2",
                             "productos": [
                                             {
                                                 "producto": "tarta",
@@ -59,6 +60,7 @@
                         {   
                             "usuario": "root",
                             "tarjeta": 6789,
+                            "direccion": "donde siempre",
                             "productos": [
                                             {
                                                 "producto": "galletas",
