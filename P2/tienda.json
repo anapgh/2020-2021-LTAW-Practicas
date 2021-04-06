@@ -26,14 +26,16 @@
     {
         "usuarios": [ 
                         {
-                            "nombre": "anapgh",
-                            "real": "Ana Poveda",
+                            "usuario": "anapgh",
+                            "nombre": "Ana Poveda",
+                            "apellidos": "Garcia Herrero",
                             "email": "jeje@"
 
                         },
                         {
-                            "nombre": "root",
-                            "real": "rotito",
+                            "usuario": "root",
+                            "nombre": "rotito",
+                            "apellidos": "rotete rotetos",
                             "email": "jaja@"
                         }
                     ]
