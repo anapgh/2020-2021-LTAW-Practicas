@@ -64,6 +64,8 @@ const server = http.createServer((req, res) => {
         if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))) {
             console.log('Usuario registrado');
             content = RESPUESTAOK;
+            html_extra = nombre + " " + apellidos;
+            content = content.replace("HTML_EXTRA", html_extra);
         }else{
             content = RESPUESTAERROR;
         }
