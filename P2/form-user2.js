@@ -8,10 +8,16 @@ const PUERTO = 8080;
 const FORMULARIO = fs.readFileSync('form-user.html','utf-8');
 
 //-- Pagina principal
-const MAIN = fs.readFileSync('main.html', 'utf-8')
+const MAIN = fs.readFileSync('main.html', 'utf-8');
+
+//-- Pagina del producto 1
+const PRODUCTO1 = fs.readFileSync('product1.html', 'utf-8');
+
+//-- Pagina del carrito
+const CARRO = fs.readFileSync('carrito.html', 'utf-8');
 
 //-- Nombre del fichero JSON a leer
-const FICHERO_JSON = "tienda.json"
+const FICHERO_JSON = ("tienda.json");
 
 //-- Leer el fichero JSON
 //-- de esta forma lo hacemos sincrona
@@ -31,15 +37,15 @@ const LOGIN = fs.readFileSync('form-user-login.html', 'utf-8')
 const tienda = JSON.parse(tienda_json);
 
 //-- Defino arrays
-let nombre_reg = []
-let apellidos_reg = []
+let nombre_reg = [];
+let apellidos_reg = [];
 
 //-- Imprimir usuarios  registrados
 //-- Recorrer el json para buscar los clientes registrados
-let usuarios_reg = tienda[1]["usuarios"]
+let usuarios_reg = tienda[1]["usuarios"];
 for (i = 0; i < usuarios_reg.length; i++){
-    nombre_reg.push(usuarios_reg[i]["nombre"])
-    apellidos_reg.push(usuarios_reg[i]["apellidos"])
+    nombre_reg.push(usuarios_reg[i]["nombre"]);
+    apellidos_reg.push(usuarios_reg[i]["apellidos"]);
 };
 
 
@@ -51,6 +57,9 @@ const server = http.createServer((req, res) => {
 
   //-- Variable para guardar el usuario
   let user;
+
+  //-- Variable para guardar el carrito
+  let carrito;
 
   if (cookie) {
     console.log("Cookie: " + cookie);
@@ -64,10 +73,13 @@ const server = http.createServer((req, res) => {
       //-- Obtener los nombres y valores por separado
       let [nombre, valor] = element.split('=');
 
-      //-- Leer el usuario
+      //-- Leer nombres
       //-- Solo si el nombre es 'user'
       if (nombre.trim() === 'user') {
         user = valor;
+      //-- Si el nombre es 'carrito'
+      }else if (nombre.trim() === 'carrito') {
+        carrito = valor;
       }
     });
 
@@ -76,7 +88,7 @@ const server = http.createServer((req, res) => {
 
       //-- Añadir a la página el nombre del usuario
       console.log("user: " + user);
-      console.log('HAY USER COOKIE')
+      console.log('HAY USER COOKIE');
     }
   }
   else {
@@ -105,11 +117,14 @@ const server = http.createServer((req, res) => {
   //-- Comprobar si hay cookie de ese usuario
   if(user){
     //-- Introducir su nombre en la pagina principal
-    content = MAIN.replace('<a href="/login">[Login]</a>', '<h3>' + user + '</h3>')
+    content = MAIN.replace('<a href="/login">[Login]</a>', '<h3>' + user + '</h3>');
   }else{
     //-- Pagina principal con el login
     content = MAIN; 
   }
+
+  //-- Array de productos
+  let productos = [];
 
   //-- Acceder al recurso login
   if (myURL.pathname == '/login'){
@@ -119,24 +134,25 @@ const server = http.createServer((req, res) => {
     if(user){
       //-- No le mandamos el formulario
       //-- Le decimos que ya esta logeado
-      console.log('Hay cookie guardada, ya estas logeado')
+      console.log('Hay cookie guardada, ya estas logeado');
       content = LOGIN.replace("USUARIO", user );
 
     }else{
-      console.log('No hay cookie, hay que logearse')
+      console.log('No hay cookie, hay que logearse');
       //-- Le mandamos el formulario para que se registre
       content = FORMULARIO;
     }
+  //-- Acceder al recurso procesar
   }else if (myURL.pathname == '/procesar'){
     //-- Comprobamos si el usuario esta registrado en JSON, si es asi OK
     if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))) {
 
       //-- LOcalizamos el indice donde se encuentra el usuario
-      let index = nombre_reg.indexOf(nombre)
+      let index = nombre_reg.indexOf(nombre);
 
       //-- Extraemos el nombre de usuario
-      usuario = usuarios_reg[index]["usuario"]
-      console.log('User: ' + usuario)
+      usuario = usuarios_reg[index]["usuario"];
+      console.log('User: ' + usuario);
 
       //-- Asignar la cookie del usuario registrado
       res.setHeader('Set-Cookie', "user=" + usuario );
@@ -149,7 +165,22 @@ const server = http.createServer((req, res) => {
     }else{
         content = RESPUESTAERROR;
     }
+  //-- Acceder al recurso producto 1
+  }else if(myURL.pathname == '/producto1'){
+    content = PRODUCTO1;
+    
+  //-- Acceder a recurso carrito
+  }else if(myURL.pathname == '/producto1/carrito'){
+    //-- Extraigo el producto
+    producto = myURL.pathname.split('/')[1];
+    //-- Añado el producto al array de productos
+    productos.push(producto);
+    //-- Asignar la cookie del pedido
+    res.setHeader('Set-Cookie', "carrito=" + productos);
+    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
+    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
   }
+
 
   //-- Esto es un stream de flujo de datos
   //-- Si hay datos en el cuerpo, se imprimen
@@ -166,7 +197,7 @@ const server = http.createServer((req, res) => {
     //-- Generar respuesta
     res.setHeader('Content-Type', content_type);
     res.write(content);
-    res.end()
+    res.end();
   });
 
 });
