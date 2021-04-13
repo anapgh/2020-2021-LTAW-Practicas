@@ -7,6 +7,12 @@ const PUERTO = 8080;
 //-- Cargar pagina web del formulario
 const FORMULARIO = fs.readFileSync('form-user.html','utf-8');
 
+//-- Pagina principal
+const MAIN = fs.readFileSync('main.html', 'utf-8')
+
+//-- Cargar pagina web de login
+const LOGIN = fs.readFileSync('form-user2-login.html', 'utf-8')
+
 //-- Nombre del fichero JSON a leer
 const FICHERO_JSON = "tienda.json"
 
@@ -36,6 +42,7 @@ for (i = 0; i < usuarios_reg.length; i++){
     apellidos_reg.push(usuarios_reg[i]["apellidos"])
 };
 
+
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
 
@@ -56,20 +63,37 @@ const server = http.createServer((req, res) => {
 
   //-- Por defecto entregar formulario
   let content_type = "text/html"; //-- le digo de que tipo es
-  let content = FORMULARIO; //-- aqui por defecto siempre devolvemos el formulario
+  let content = MAIN; //-- aqui por defecto siempre devolvemos el formulario
 
-  //-- En el caso de ir /procesar mandar la respuesta
-  if (myURL.pathname == '/procesar') {
-        content_type = "text/html";
-        if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))) {
-            console.log('Usuario registrado');
-            content = RESPUESTAOK;
-            html_extra = nombre + " " + apellidos;
-            content = content.replace("HTML_EXTRA", html_extra);
-        }else{
-            content = RESPUESTAERROR;
-        }
-  }
+  //-- Acceder al recurso login
+  if (myURL.pathname == '/login'){
+    content_type = "text/html";
+    content = FORMULARIO;
+  
+  //-- Acceder al recurso procesar
+  }else if (myURL.pathname == '/procesar') {
+    content_type = "text/html";
+
+    //-- Comprobamos si el usuario esta registrado, si es asi OK
+    if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))) {
+
+        //-- LOcalizamos el indice donde se encuentra el usuario
+        let index = nombre_reg.indexOf(nombre)
+
+        //-- Extraemos el nombre de usuario
+        usuario = usuarios_reg[index]["usuario"]
+        console.log('User: ' + usuario)
+
+        //-- Mostramos la pagina OK
+        console.log('Usuario registrado');
+        content = RESPUESTAOK;
+        html_extra = nombre + " " + apellidos;
+        content = content.replace("HTML_EXTRA", html_extra);
+
+    }else{
+        content = RESPUESTAERROR;
+    }
+   }
 
   //-- Esto es un stream de flujo de datos
   //-- Si hay datos en el cuerpo, se imprimen
