@@ -98,9 +98,18 @@ const server = http.createServer((req, res) => {
   console.log(" Nombre: " + nombre);
   console.log(" Apellidos: " + apellidos);
 
-  //-- Por defecto entregar formulario
+  //-- Por defecto entregar la pagina principal
   let content_type = "text/html"; //-- le digo de que tipo es
-  let content = MAIN; //-- aqui por defecto siempre devolvemos el formulario
+  let content; //-- contenido
+
+  //-- Comprobar si hay cookie de ese usuario
+  if(user){
+    //-- Introducir su nombre en la pagina principal
+    content = MAIN.replace('<a href="/login">[Login]</a>', '<h3>' + user + '</h3>')
+  }else{
+    //-- Pagina principal con el login
+    content = MAIN; 
+  }
 
   //-- Acceder al recurso login
   if (myURL.pathname == '/login'){
