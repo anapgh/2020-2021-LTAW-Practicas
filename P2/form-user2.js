@@ -13,6 +13,17 @@ const MAIN = fs.readFileSync('main.html', 'utf-8');
 //-- Pagina del producto 1
 const PRODUCTO1 = fs.readFileSync('product1.html', 'utf-8');
 
+//-- Pagina del producto 2
+const PRODUCTO2 = fs.readFileSync('product2.html', 'utf-8');
+
+//-- Pagina del producto 3
+const PRODUCTO3 = fs.readFileSync('product3.html', 'utf-8');
+
+//-- Pagina del producto 4
+const PRODUCTO4 = fs.readFileSync('product4.html', 'utf-8');
+
+
+
 //-- Pagina del carrito
 const CARRO = fs.readFileSync('carrito.html', 'utf-8');
 
@@ -48,6 +59,8 @@ for (i = 0; i < usuarios_reg.length; i++){
     apellidos_reg.push(usuarios_reg[i]["apellidos"]);
 };
 
+//-- Array de productos
+let productos = [];
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
@@ -123,8 +136,6 @@ const server = http.createServer((req, res) => {
     content = MAIN; 
   }
 
-  //-- Array de productos
-  let productos = [];
 
   //-- Acceder al recurso login
   if (myURL.pathname == '/login'){
@@ -179,7 +190,54 @@ const server = http.createServer((req, res) => {
     res.setHeader('Set-Cookie', "carrito=" + productos);
     content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
     content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
+
+    //-- Acceder al recurso producto 2
+  }else if(myURL.pathname == '/producto2'){
+    content = PRODUCTO2;
+    
+  //-- Acceder a recurso carrito
+  }else if(myURL.pathname == '/producto2/carrito'){
+    //-- Extraigo el producto
+    producto = myURL.pathname.split('/')[1];
+    //-- Añado el producto al array de productos
+    productos.push(producto);
+    //-- Asignar la cookie del pedido
+    res.setHeader('Set-Cookie', "carrito=" + productos);
+    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
+    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
+
+  }  //-- Acceder al recurso producto 3
+  else if(myURL.pathname == '/producto3'){
+    content = PRODUCTO3;
+    
+  //-- Acceder a recurso carrito
+  }else if(myURL.pathname == '/producto3/carrito'){
+    //-- Extraigo el producto
+    producto = myURL.pathname.split('/')[1];
+    //-- Añado el producto al array de productos
+    productos.push(producto);
+    //-- Asignar la cookie del pedido
+    res.setHeader('Set-Cookie', "carrito=" + productos);
+    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
+    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
+
+    //-- Acceder al recurso producto 4
+  }else if(myURL.pathname == '/producto4'){
+    content = PRODUCTO4;
+    
+  //-- Acceder a recurso carrito
+  }else if(myURL.pathname == '/producto4/carrito'){
+    //-- Extraigo el producto
+    producto = myURL.pathname.split('/')[1];
+    //-- Añado el producto al array de productos
+    productos.push(producto);
+    //-- Asignar la cookie del pedido
+    res.setHeader('Set-Cookie', "carrito=" + productos);
+    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
+    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
   }
+
+  console.log('PRODUCTOS: ' + productos)
 
 
   //-- Esto es un stream de flujo de datos
