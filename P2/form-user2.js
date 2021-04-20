@@ -62,6 +62,7 @@ for (i = 0; i < usuarios_reg.length; i++){
 //-- Array de productos
 let productos = [];
 
+
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
 
@@ -73,6 +74,12 @@ const server = http.createServer((req, res) => {
 
   //-- Variable para guardar el carrito
   let carrito;
+
+  //-- Variables de contador de productos
+  let producto1 = 0
+  let producto2 = 0
+  let producto3 = 0
+  let producto4 = 0
 
   if (cookie) {
     console.log("Cookie: " + cookie);
@@ -179,61 +186,46 @@ const server = http.createServer((req, res) => {
   //-- Acceder al recurso producto 1
   }else if(myURL.pathname == '/producto1'){
     content = PRODUCTO1;
-    
-  //-- Acceder a recurso carrito
-  }else if(myURL.pathname == '/producto1/carrito'){
-    //-- Extraigo el producto
-    producto = myURL.pathname.split('/')[1];
-    //-- Añado el producto al array de productos
-    productos.push(producto);
-    //-- Asignar la cookie del pedido
-    res.setHeader('Set-Cookie', "carrito=" + productos);
-    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
-    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
 
-    //-- Acceder al recurso producto 2
+  //-- Acceder al recurso producto 2
   }else if(myURL.pathname == '/producto2'){
     content = PRODUCTO2;
-    
-  //-- Acceder a recurso carrito
-  }else if(myURL.pathname == '/producto2/carrito'){
-    //-- Extraigo el producto
-    producto = myURL.pathname.split('/')[1];
-    //-- Añado el producto al array de productos
-    productos.push(producto);
-    //-- Asignar la cookie del pedido
-    res.setHeader('Set-Cookie', "carrito=" + productos);
-    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
-    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
 
-  }  //-- Acceder al recurso producto 3
-  else if(myURL.pathname == '/producto3'){
+  //-- Acceder al recurso producto 3
+  }else if(myURL.pathname == '/producto3'){
     content = PRODUCTO3;
-    
-  //-- Acceder a recurso carrito
-  }else if(myURL.pathname == '/producto3/carrito'){
-    //-- Extraigo el producto
-    producto = myURL.pathname.split('/')[1];
-    //-- Añado el producto al array de productos
-    productos.push(producto);
-    //-- Asignar la cookie del pedido
-    res.setHeader('Set-Cookie', "carrito=" + productos);
-    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
-    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
-
-    //-- Acceder al recurso producto 4
+  
+  //-- Acceder al recurso producto 4  
   }else if(myURL.pathname == '/producto4'){
     content = PRODUCTO4;
-    
+
+
   //-- Acceder a recurso carrito
-  }else if(myURL.pathname == '/producto4/carrito'){
+  }else if(myURL.pathname == '/producto1/carrito' || myURL.pathname == '/producto2/carrito' ||
+           myURL.pathname == '/producto3/carrito' || myURL.pathname == '/producto4/carrito'){
     //-- Extraigo el producto
     producto = myURL.pathname.split('/')[1];
     //-- Añado el producto al array de productos
     productos.push(producto);
+    //-- Contar la cantidad de cada producto
+    var productos_sum = {};
+    productos.forEach(function(numero){
+      productos_sum[numero] = (productos_sum[numero] || 0) + 1;
+    });
+    console.log(productos_sum)
+    //-- Variables para devolver al html
+    var total = ''
+    var total_cookie = ''
+    //-- Pasar los productos sumados a string
+    for (i=0; i<Object.keys(productos_sum).length; i++){
+      prod = Object.keys(productos_sum)
+      cant = Object.values(productos_sum)
+      total += ('<h3>' + prod[i] + ': ' + cant[i] + '</h4>')
+      total_cookie += (prod[i] + ': ' + cant[i] + ', ')
+    }
     //-- Asignar la cookie del pedido
-    res.setHeader('Set-Cookie', "carrito=" + productos);
-    content = CARRO.replace('NINGUNO', '<h3>' + productos + '</h3>');
+    res.setHeader('Set-Cookie', "carrito=" + total_cookie);
+    content = CARRO.replace('NINGUNO', total );
     content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
   }
 
