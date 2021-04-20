@@ -87,24 +87,24 @@ const server = http.createServer((req, res) => {
   if (cookie) {
     console.log("Cookie: " + cookie);
 
-     //-- Obtener un array con todos los pares nombre-valor
-     let pares = cookie.split(";");
+    //-- Obtener un array con todos los pares nombre-valor
+    let pares = cookie.split(";");
 
     //-- Recorrer todos los pares nombre-valor
     pares.forEach((element, index) => {
 
-      //-- Obtener los nombres y valores por separado
-      let [nombre, valor] = element.split('=');
+    //-- Obtener los nombres y valores por separado
+    let [nombre, valor] = element.split('=');
 
-      //-- Leer nombres
-      //-- Solo si el nombre es 'user'
-      if (nombre.trim() === 'user') {
-        user = valor;
-      //-- Si el nombre es 'carrito'
-      }else if (nombre.trim() === 'carrito') {
-        carrito = valor;
-      }
-    });
+    //-- Leer nombres
+    //-- Solo si el nombre es 'user'
+    if (nombre.trim() === 'user') {
+      user = valor;
+    //-- Si el nombre es 'carrito'
+    }else if (nombre.trim() === 'carrito') {
+      carrito = valor;
+    }
+  });
 
     //--- Si la variable user está asignada
     if (user) {
@@ -150,12 +150,9 @@ const server = http.createServer((req, res) => {
     tienda[2]["pedidos"].push(pedido)
  
     //-- Convertir la variable a cadena JSON
-    //-- Convertimos de una cadena a JSON con la funcion
-    //-- .stringify
     let mytienda = JSON.stringify(tienda, null, 4);
 
     //-- Guardarla en el fichero destino
-    //-- guardamos nuestro nuevo fichero JSON
     fs.writeFileSync(FICHERO_JSON_OUT, mytienda);
   };
 
@@ -189,7 +186,7 @@ const server = http.createServer((req, res) => {
   //-- Acceder al recurso procesar
   }else if (myURL.pathname == '/procesar'){
     //-- Comprobamos si el usuario esta registrado en JSON, si es asi OK
-    if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))) {
+    if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))){
 
       //-- LOcalizamos el indice donde se encuentra el usuario
       let index = nombre_reg.indexOf(nombre);
