@@ -108,7 +108,6 @@ const server = http.createServer((req, res) => {
 
     //--- Si la variable user está asignada
     if (user) {
-
       //-- Añadir a la página el nombre del usuario
       console.log("user: " + user);
       console.log('HAY USER COOKIE');
@@ -149,10 +148,7 @@ const server = http.createServer((req, res) => {
 
     //-- Añadir el pedido a la tienda
     tienda[2]["pedidos"].push(pedido)
-    console.log(tienda)
-    console.log(pedido)
-    
-
+ 
     //-- Convertir la variable a cadena JSON
     //-- Convertimos de una cadena a JSON con la funcion
     //-- .stringify
@@ -178,8 +174,6 @@ const server = http.createServer((req, res) => {
 
   //-- Acceder al recurso login
   if (myURL.pathname == '/login'){
-    content_type = "text/html";
-
     //-- Comprobamos si hay cookie de ese usuario
     if(user){
       //-- No le mandamos el formulario
@@ -237,7 +231,6 @@ const server = http.createServer((req, res) => {
   }else if(myURL.pathname == '/producto4'){
     content = PRODUCTO4;
 
-
   //-- Acceder a recurso carrito
   }else if(myURL.pathname == '/producto1/carrito' || myURL.pathname == '/producto2/carrito' ||
            myURL.pathname == '/producto3/carrito' || myURL.pathname == '/producto4/carrito'){
@@ -250,7 +243,7 @@ const server = http.createServer((req, res) => {
     productos.forEach(function(numero){
       productos_sum[numero] = (productos_sum[numero] || 0) + 1;
     });
-    console.log(productos_sum)
+  
     //-- Variables para devolver al html
     var total = '';
     var total_cookie = '';
@@ -267,6 +260,7 @@ const server = http.createServer((req, res) => {
     }
     //-- Lista de productos, para el json
     list_productos = list_prod;
+    console.log('PEDIDO:')
     console.log(list_productos)
   
     //-- Asignar la cookie del pedido
@@ -275,9 +269,7 @@ const server = http.createServer((req, res) => {
     content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
   }
 
-  console.log('PRODUCTOS: ' + productos)
-
-
+ 
   //-- Esto es un stream de flujo de datos
   //-- Si hay datos en el cuerpo, se imprimen
   req.on('data', (cuerpo) => {
