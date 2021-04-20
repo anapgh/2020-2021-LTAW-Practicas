@@ -2,22 +2,22 @@
     {
         "productos": [
                         {
-                            "nombre": "tartas",
+                            "nombre": "producto1",
                             "descripcion": "producto 1",
                             "stock": 20
                         },
                         {
-                            "nombre": "galletas",
+                            "nombre": "producto2",
                             "descripcion": "producto 2",
                             "stock": 100
                         },
                         {
-                            "nombre": "donuts",
+                            "nombre": "producto3",
                             "descripcion": "producto 3",
                             "stock": 50
                         },
                         {
-                            "nombre": "magdalenas",
+                            "nombre": "producto4",
                             "descripcion": "producto 4",
                             "stock": 60
                          }
@@ -48,11 +48,11 @@
                             "direccion": "en mi casa, Nº 2",
                             "productos": [
                                             {
-                                                "producto": "tarta",
+                                                "producto": "producto1",
                                                 "unidades": 2
                                             },
                                             {
-                                                "producto": "donuts",
+                                                "producto": "pruducto2",
                                                 "unidades": 6
                                             }
                                          ]
@@ -63,15 +63,15 @@
                             "direccion": "donde siempre",
                             "productos": [
                                             {
-                                                "producto": "galletas",
+                                                "producto": "producto1",
                                                 "unidades": 9
                                             },
                                             {
-                                                "producto": "magdalenas",
+                                                "producto": "producto3",
                                                 "unidades": 6
                                             },
                                             {
-                                                "producto": "tarta",
+                                                "producto": "producto4",
                                                 "unidades": 1
                                             }
                                          ]
