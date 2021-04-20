@@ -22,8 +22,6 @@ const PRODUCTO3 = fs.readFileSync('product3.html', 'utf-8');
 //-- Pagina del producto 4
 const PRODUCTO4 = fs.readFileSync('product4.html', 'utf-8');
 
-
-
 //-- Pagina del carrito
 const CARRO = fs.readFileSync('carrito.html', 'utf-8');
 
@@ -34,6 +32,9 @@ const FICHERO_JSON = ("tienda.json");
 //-- de esta forma lo hacemos sincrona
 const  tienda_json = fs.readFileSync(FICHERO_JSON);
 
+//-- Nombre del fichero JSON de salida
+const FICHERO_JSON_OUT = "tienda-modi.json"
+
 //-- HTML de la página de respuesta  de Bienvenido
 const RESPUESTAOK = fs.readFileSync('form-user-res.html', 'utf-8');
 
@@ -42,6 +43,13 @@ const RESPUESTAERROR = fs.readFileSync('form-user-res-error.html', 'utf-8');
 
 //-- HTML de login ya dentro
 const LOGIN = fs.readFileSync('form-user-login.html', 'utf-8')
+
+//-- Cargar pagina web del formulario
+const COMPRAR = fs.readFileSync('form-comprar.html','utf-8');
+
+//-- HTML de la página de respuesta de la compra
+const RESPUESTACOMP = fs.readFileSync('form-comprar-res.html', 'utf-8');
+
 
 //-- Crear la estructura tienda a partir del contenido del fichero
 //-- nos devuelve la estructura del json
@@ -61,6 +69,7 @@ for (i = 0; i < usuarios_reg.length; i++){
 
 //-- Array de productos
 let productos = [];
+let list_productos;
 
 
 //-- SERVIDOR: Bucle principal de atención a clientes
@@ -74,12 +83,6 @@ const server = http.createServer((req, res) => {
 
   //-- Variable para guardar el carrito
   let carrito;
-
-  //-- Variables de contador de productos
-  let producto1 = 0
-  let producto2 = 0
-  let producto3 = 0
-  let producto4 = 0
 
   if (cookie) {
     console.log("Cookie: " + cookie);
@@ -130,6 +133,36 @@ const server = http.createServer((req, res) => {
   console.log(" Nombre: " + nombre);
   console.log(" Apellidos: " + apellidos);
 
+  //-- Leer los parámetros
+  let direccion = myURL.searchParams.get('direccion');
+  let tarjeta = myURL.searchParams.get('tarjeta');
+  console.log(" Direccion de envio: " + direccion);
+  console.log(" Numero de Tarjeta de credito: " + tarjeta);
+
+  //-- Comprobamos si es distinto de null
+  if ((direccion != null) && (tarjeta != null)){
+    //-- Añadirlos al pedido
+    let pedido = {"usuario" : user,
+                  "tarjeta" : tarjeta,
+                  "direccion" : direccion,
+                  "productos": list_productos}
+
+    //-- Añadir el pedido a la tienda
+    tienda[2]["pedidos"].push(pedido)
+    console.log(tienda)
+    console.log(pedido)
+    
+
+    //-- Convertir la variable a cadena JSON
+    //-- Convertimos de una cadena a JSON con la funcion
+    //-- .stringify
+    let mytienda = JSON.stringify(tienda, null, 4);
+
+    //-- Guardarla en el fichero destino
+    //-- guardamos nuestro nuevo fichero JSON
+    fs.writeFileSync(FICHERO_JSON_OUT, mytienda);
+  };
+
   //-- Por defecto entregar la pagina principal
   let content_type = "text/html"; //-- le digo de que tipo es
   let content; //-- contenido
@@ -142,7 +175,6 @@ const server = http.createServer((req, res) => {
     //-- Pagina principal con el login
     content = MAIN; 
   }
-
 
   //-- Acceder al recurso login
   if (myURL.pathname == '/login'){
@@ -183,6 +215,12 @@ const server = http.createServer((req, res) => {
     }else{
         content = RESPUESTAERROR;
     }
+  }else if (myURL.pathname == '/comprar'){
+    content = COMPRAR 
+    
+  }else if (myURL.pathname == '/finalizar'){
+    content = RESPUESTACOMP;
+
   //-- Acceder al recurso producto 1
   }else if(myURL.pathname == '/producto1'){
     content = PRODUCTO1;
@@ -214,15 +252,23 @@ const server = http.createServer((req, res) => {
     });
     console.log(productos_sum)
     //-- Variables para devolver al html
-    var total = ''
-    var total_cookie = ''
+    var total = '';
+    var total_cookie = '';
+    let list_prod = [];
     //-- Pasar los productos sumados a string
     for (i=0; i<Object.keys(productos_sum).length; i++){
       prod = Object.keys(productos_sum)
       cant = Object.values(productos_sum)
       total += ('<h3>' + prod[i] + ': ' + cant[i] + '</h4>')
       total_cookie += (prod[i] + ': ' + cant[i] + ', ')
+      pedido = {"producto": prod[i],
+                 "unidades": cant[i]}
+      list_prod.push(pedido)
     }
+    //-- Lista de productos, para el json
+    list_productos = list_prod;
+    console.log(list_productos)
+  
     //-- Asignar la cookie del pedido
     res.setHeader('Set-Cookie', "carrito=" + total_cookie);
     content = CARRO.replace('NINGUNO', total );
