@@ -57,7 +57,7 @@ const server = http.createServer((req, res) => {
     //-- Convertir la variable a cadena JSON
     //-- Convertimos de una cadena a JSON con la funcion
     //-- .stringify
-    let mytienda = JSON.stringify(tienda);
+    let mytienda = JSON.stringify(tienda, null, 4);
 
     //-- Guardarla en el fichero destino
     //-- guardamos nuestro nuevo fichero JSON
