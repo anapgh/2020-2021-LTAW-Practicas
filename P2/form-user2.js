@@ -225,8 +225,7 @@ const server = http.createServer((req, res) => {
         content = RESPUESTAERROR;
     }
   }else if (myURL.pathname == '/comprar'){
-    content = COMPRAR 
-    contente = content.replace('PRODUCTOS', productos_carrito)
+    content = COMPRAR.replace('PRODUCTOS', productos_carrito)
     
   }else if (myURL.pathname == '/finalizar'){
     content = RESPUESTACOMP;
@@ -264,20 +263,20 @@ const server = http.createServer((req, res) => {
     //-- Añado el producto al array de productos
     productos.push(producto);
     //-- Contar la cantidad de cada producto
-    var productos_sum = {};
+    let productos_sum = {};
     productos.forEach(function(numero){
       productos_sum[numero] = (productos_sum[numero] || 0) + 1;
     });
   
     //-- Variables para devolver al html
-    var total = '';
-    var total_cookie = '';
+    let total = '';
+    let total_cookie = '';
     let list_prod = [];
     //-- Pasar los productos sumados a string
     for (i=0; i<Object.keys(productos_sum).length; i++){
       prod = Object.keys(productos_sum)
       cant = Object.values(productos_sum)
-      total += ('<h3>' + prod[i] + ': ' + cant[i] + '</h4>')
+      total += ('<h4>' + prod[i] + ': ' + cant[i] + '</h4>')
       total_cookie += (prod[i] + ': ' + cant[i] + ', ')
       pedido = {"producto": prod[i],
                 "unidades": cant[i]}
