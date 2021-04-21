@@ -10,6 +10,9 @@ const FORMULARIO = fs.readFileSync('form-user.html','utf-8');
 //-- Pagina principal
 const MAIN = fs.readFileSync('main.html', 'utf-8');
 
+//-- Pagina error
+const ERROR = fs.readFileSync('error_page.html', 'utf-8');
+
 //-- Pagina del producto 1
 const PRODUCTO1 = fs.readFileSync('product1.html', 'utf-8');
 
@@ -264,6 +267,12 @@ const server = http.createServer((req, res) => {
     res.setHeader('Set-Cookie', "carrito=" + total_cookie);
     content = CARRO.replace('NINGUNO', total );
     content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
+  }else{
+    res.setHeader('Content-Type','text/html');
+    res.statusCode = 404;
+    res.write(ERROR);
+    res.end();
+    return;
   }
 
  
