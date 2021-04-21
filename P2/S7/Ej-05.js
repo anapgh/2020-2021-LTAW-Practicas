@@ -15,6 +15,7 @@ const PRODUCTOS_JSON = fs.readFileSync('Ej-01.json');
 
 //-- Obtener el array de productos
 let productos = JSON.parse(PRODUCTOS_JSON);
+console.log(productos)
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
