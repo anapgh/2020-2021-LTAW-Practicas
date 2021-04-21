@@ -74,6 +74,16 @@ for (i = 0; i < usuarios_reg.length; i++){
 let productos = [];
 let list_productos;
 
+// Obtenemos los productos del json
+key = tienda[0]
+set = key["productos"]
+//-- Array de productos del json
+let productos_json = []
+for (i=0; i<set.length; i++){
+    productos_json.push(set[i]["nombre"])
+}
+console.log(productos_json)
+
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
@@ -163,17 +173,19 @@ const server = http.createServer((req, res) => {
   let content_type = "text/html"; //-- le digo de que tipo es
   let content; //-- contenido
 
-  //-- Comprobar si hay cookie de ese usuario
-  if(user){
+ 
+  if(myURL.pathname == '/'){
+     //-- Comprobar si hay cookie de ese usuario
+    if(user){
     //-- Introducir su nombre en la pagina principal
-    content = MAIN.replace('<a href="/login">[Login]</a>', '<h3>' + user + '</h3>');
-  }else{
-    //-- Pagina principal con el login
-    content = MAIN; 
-  }
-
+      content = MAIN.replace('<a href="/login">[Login]</a>', '<h3>' + user + '</h3>');
+    }else{
+      //-- Pagina principal con el login
+      content = MAIN; 
+    }
+  
   //-- Acceder al recurso login
-  if (myURL.pathname == '/login'){
+  }else if (myURL.pathname == '/login'){
     //-- Comprobamos si hay cookie de ese usuario
     if(user){
       //-- No le mandamos el formulario
@@ -267,6 +279,61 @@ const server = http.createServer((req, res) => {
     res.setHeader('Set-Cookie', "carrito=" + total_cookie);
     content = CARRO.replace('NINGUNO', total );
     content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
+
+  //-- Recurso productos
+  //-- Ahora vamos a tener en cuenta las busquedas
+  }else if(myURL.pathname =='/productos'){
+    console.log("Peticion de Productos!")
+    content_type = "application/json";
+
+    //-- Leer los parámetros
+    let param1 = myURL.searchParams.get('param1');
+
+    //-- Convertimos los caracteres alphanumericos en string
+    param1 = param1.toUpperCase();
+
+    console.log("  Param: " +  param1);
+
+    //-- Se construye nuevo Array de resultado de busquedas
+    let result = [];
+
+    //-- Para ello
+    //-- Recorremos todos los productos de la bae de datos
+    //-- Y los que cuadren, se añaden al array
+    for (let prod of productos_json) {
+
+        //-- Pasar a mayúsculas
+        prodU = prod.toUpperCase();
+
+        //-- Si el producto comienza por lo indicado en el parametro
+        //-- meter este producto en el array de resultados
+        if (prodU.startsWith(param1)) {
+            result.push(prod);
+        }
+        
+    }
+    //-- Imprimimos el aray de resultado de busquedas
+    console.log(result);
+    //-- Pasamos el resultado a formato JSON con stringify
+    content = JSON.stringify(result);
+
+    
+  }else if(myURL.pathname == '/cliente.js'){
+    //-- Leer fichero javascript
+    console.log("recurso: " + myURL.pathname);
+    file = myURL.pathname.split('/')[1]
+    fs.readFile(file, 'utf-8', (err,data) => {
+        if (err) {
+            console.log("Error: PEPIYOO" + err)
+            return;
+        } else {
+          res.setHeader('Content-Type', 'application/javascript');
+          res.write(data);
+          res.end();
+        }
+    });
+    return;
+    
   }else{
     res.setHeader('Content-Type','text/html');
     res.statusCode = 404;
