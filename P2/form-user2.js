@@ -73,6 +73,7 @@ for (i = 0; i < usuarios_reg.length; i++){
 //-- Array de productos
 let productos = [];
 let list_productos;
+let productos_carrito;
 
 // Obtenemos los productos del json
 prod = tienda[0]["productos"]
@@ -183,7 +184,8 @@ const server = http.createServer((req, res) => {
      //-- Comprobar si hay cookie de ese usuario
     if(user){
     //-- Introducir su nombre en la pagina principal
-      content = MAIN.replace('<a href="/login">[Login]</a>', '<h3>' + user + '</h3>');
+      content = MAIN.replace('<h3></h3>', '<h3>' + user + '</h3>');
+      content = content.replace('<a href=""></a>','<a href="/comprar">[Finalizar Comprar]</a>');
     }else{
       //-- Pagina principal con el login
       content = MAIN; 
@@ -218,12 +220,13 @@ const server = http.createServer((req, res) => {
       content = RESPUESTAOK;
       html_extra = nombre;
       content = content.replace("HTML_EXTRA", html_extra);
-      
+
     }else{
         content = RESPUESTAERROR;
     }
   }else if (myURL.pathname == '/comprar'){
     content = COMPRAR 
+    contente = content.replace('PRODUCTOS', productos_carrito)
     
   }else if (myURL.pathname == '/finalizar'){
     content = RESPUESTACOMP;
@@ -284,6 +287,8 @@ const server = http.createServer((req, res) => {
     list_productos = list_prod;
     console.log('PEDIDO:')
     console.log(list_productos)
+    //-- Lista de productos para mostrar en la compra
+    productos_carrito = total;
   
     //-- Asignar la cookie del pedido
     res.setHeader('Set-Cookie', "carrito=" + total_cookie);
