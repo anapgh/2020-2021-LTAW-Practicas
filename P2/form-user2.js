@@ -75,12 +75,17 @@ let productos = [];
 let list_productos;
 
 // Obtenemos los productos del json
-key = tienda[0]
-set = key["productos"]
+prod = tienda[0]["productos"]
 //-- Array de productos del json
 let productos_json = []
-for (i=0; i<set.length; i++){
-    productos_json.push(set[i]["nombre"])
+//-- Array de descripciones
+let descripcion = [];
+//-- Array de precios
+let precio = []
+for (i=0; i<prod.length; i++){
+    productos_json.push(prod[i]["nombre"]);
+    descripcion.push(prod[i]["descripcion"]);
+    precio.push(prod[i]["precio"]);
 }
 console.log(productos_json)
 
@@ -230,18 +235,27 @@ const server = http.createServer((req, res) => {
   //-- Acceder al recurso producto 1
   }else if(myURL.pathname == '/producto1'){
     content = PRODUCTO1;
+    content = content.replace('DESCRIPCION', descripcion[0])
+    content = content.replace('PRECIO', precio[0])
+
 
   //-- Acceder al recurso producto 2
   }else if(myURL.pathname == '/producto2'){
     content = PRODUCTO2;
+    content = content.replace('DESCRIPCION', descripcion[1])
+    content = content.replace('PRECIO', precio[1])
 
   //-- Acceder al recurso producto 3
   }else if(myURL.pathname == '/producto3'){
     content = PRODUCTO3;
+    content = content.replace('DESCRIPCION', descripcion[2])
+    content = content.replace('PRECIO', precio[2])
   
   //-- Acceder al recurso producto 4  
   }else if(myURL.pathname == '/producto4'){
     content = PRODUCTO4;
+    content = content.replace('DESCRIPCION', descripcion[3])
+    content = content.replace('PRECIO', precio[3])
 
   //-- Acceder a recurso carrito
   }else if(myURL.pathname == '/producto1/carrito' || myURL.pathname == '/producto2/carrito' ||
@@ -267,7 +281,7 @@ const server = http.createServer((req, res) => {
       total += ('<h3>' + prod[i] + ': ' + cant[i] + '</h4>')
       total_cookie += (prod[i] + ': ' + cant[i] + ', ')
       pedido = {"producto": prod[i],
-                 "unidades": cant[i]}
+                "unidades": cant[i]}
       list_prod.push(pedido)
     }
     //-- Lista de productos, para el json
