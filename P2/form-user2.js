@@ -60,14 +60,14 @@ const tienda = JSON.parse(tienda_json);
 
 //-- Defino arrays
 let nombre_reg = [];
-let apellidos_reg = [];
+let password_reg = [];
 
 //-- Imprimir usuarios  registrados
 //-- Recorrer el json para buscar los clientes registrados
 let usuarios_reg = tienda[1]["usuarios"];
 for (i = 0; i < usuarios_reg.length; i++){
-    nombre_reg.push(usuarios_reg[i]["nombre"]);
-    apellidos_reg.push(usuarios_reg[i]["apellidos"]);
+    nombre_reg.push(usuarios_reg[i]["usuario"]);
+    password_reg.push(usuarios_reg[i]["password"]);
 };
 
 //-- Array de productos
@@ -146,9 +146,9 @@ const server = http.createServer((req, res) => {
 
   //-- Leer los parámetros
   let nombre = myURL.searchParams.get('nombre');
-  let apellidos = myURL.searchParams.get('apellidos');
-  console.log(" Nombre: " + nombre);
-  console.log(" Apellidos: " + apellidos);
+  let password = myURL.searchParams.get('password');
+  console.log(" Nombre usuario: " + nombre);
+  console.log(" Password: " + password);
 
   //-- Leer los parámetros
   let direccion = myURL.searchParams.get('direccion');
@@ -206,23 +206,19 @@ const server = http.createServer((req, res) => {
   //-- Acceder al recurso procesar
   }else if (myURL.pathname == '/procesar'){
     //-- Comprobamos si el usuario esta registrado en JSON, si es asi OK
-    if ((nombre_reg.includes(nombre)) && (apellidos_reg.includes(apellidos))){
+    if ((nombre_reg.includes(nombre)) && (password_reg.includes(password))){
 
-      //-- LOcalizamos el indice donde se encuentra el usuario
-      let index = nombre_reg.indexOf(nombre);
-
-      //-- Extraemos el nombre de usuario
-      usuario = usuarios_reg[index]["usuario"];
-      console.log('User: ' + usuario);
+      console.log('User: ' + nombre);
 
       //-- Asignar la cookie del usuario registrado
-      res.setHeader('Set-Cookie', "user=" + usuario );
+      res.setHeader('Set-Cookie', "user=" + nombre );
 
       //-- Mostramos la pagina OK
       console.log('Usuario registrado');
       content = RESPUESTAOK;
-      html_extra = nombre + " " + apellidos;
+      html_extra = nombre;
       content = content.replace("HTML_EXTRA", html_extra);
+      
     }else{
         content = RESPUESTAERROR;
     }

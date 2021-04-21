@@ -32,13 +32,15 @@
                         {
                             "usuario": "anapgh",
                             "nombre": "Ana Poveda Garcia Herrero",
-                            "email": "jeje@"
+                            "email": "jeje@",
+                            "password": "anita"
 
                         },
                         {
                             "usuario": "root",
                             "nombre": "rotito rotete rotetos",
-                            "email": "jaja@"
+                            "email": "jaja@",
+                            "password": "rotito"
                         }
                     ]
     },
