@@ -4,21 +4,25 @@
                         {
                             "nombre": "producto1",
                             "descripcion": "producto 1",
+                            "precio": "10€",
                             "stock": 20
                         },
                         {
                             "nombre": "producto2",
                             "descripcion": "producto 2",
+                            "precio": "11€",
                             "stock": 100
                         },
                         {
                             "nombre": "producto3",
                             "descripcion": "producto 3",
+                            "precio": "12€",
                             "stock": 50
                         },
                         {
                             "nombre": "producto4",
                             "descripcion": "producto 4",
+                            "precio": "13€",
                             "stock": 60
                          }
                     ]      
@@ -27,15 +31,13 @@
         "usuarios": [ 
                         {
                             "usuario": "anapgh",
-                            "nombre": "Ana Poveda",
-                            "apellidos": "Garcia Herrero",
+                            "nombre": "Ana Poveda Garcia Herrero",
                             "email": "jeje@"
 
                         },
                         {
                             "usuario": "root",
-                            "nombre": "rotito",
-                            "apellidos": "rotete rotetos",
+                            "nombre": "rotito rotete rotetos",
                             "email": "jaja@"
                         }
                     ]
