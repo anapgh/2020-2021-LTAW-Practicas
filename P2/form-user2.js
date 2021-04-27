@@ -90,10 +90,24 @@ for (i=0; i<prod.length; i++){
 }
 console.log(productos_json)
 
+//-- Definir los tipos de mime
+const mime_type = {
+  "html" : "text/html",
+  "css"  : "text/css",
+  "jpg"  : "image/jpg",
+  "JPG"  : "image/jpg",
+  "jpeg" : "image/jpeg",
+  "png"  : "image/png",
+  "gif"  : "image/gif",
+  "ico"  : "image/x-icon",
+  "json" : "application/json"
+};
 
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
 
+  console.log('\nPetcion recibida');
+  
   //-- Leer la Cookie recibida y mostrarla en la consola
   const cookie = req.headers.cookie;
 
@@ -103,6 +117,7 @@ const server = http.createServer((req, res) => {
   //-- Variable para guardar el carrito
   let carrito;
 
+  //-- Comprobamos si hay cookies
   if (cookie) {
     console.log("Cookie: " + cookie);
 
@@ -124,15 +139,7 @@ const server = http.createServer((req, res) => {
       carrito = valor;
     }
   });
-
-    //--- Si la variable user está asignada
-    if (user) {
-      //-- Añadir a la página el nombre del usuario
-      console.log("user: " + user);
-      console.log('HAY USER COOKIE');
-    }
-  }
-  else {
+  }else {
     console.log("Petición sin cookie");
   }
 
@@ -142,22 +149,20 @@ const server = http.createServer((req, res) => {
   console.log("");
   console.log("Método: " + req.method); //-- metodo
   console.log("Recurso: " + req.url); //-- recurso
-  console.log("  Ruta: " + myURL.pathname); //-- ruta sin parametros
-  console.log("  Parametros: " + myURL.searchParams); //-- parametos separados
+  console.log("Ruta: " + myURL.pathname); //-- ruta sin parametros
+  console.log("Parametros: " + myURL.searchParams); //-- parametos separados
 
   //-- Leer los parámetros
   let nombre = myURL.searchParams.get('nombre');
   let password = myURL.searchParams.get('password');
-  console.log(" Nombre usuario: " + nombre);
-  console.log(" Password: " + password);
-
-  //-- Leer los parámetros
   let direccion = myURL.searchParams.get('direccion');
   let tarjeta = myURL.searchParams.get('tarjeta');
+  console.log(" Nombre usuario: " + nombre);
+  console.log(" Password: " + password);
   console.log(" Direccion de envio: " + direccion);
   console.log(" Numero de Tarjeta de credito: " + tarjeta);
 
-  //-- Comprobamos si es distinto de null
+  //-- Comprobamos si la direccion y tarjeta es distinto de null
   if ((direccion != null) && (tarjeta != null)){
     //-- Añadirlos al pedido
     let pedido = {"usuario" : user,
@@ -175,11 +180,13 @@ const server = http.createServer((req, res) => {
     fs.writeFileSync(FICHERO_JSON_OUT, mytienda);
   };
 
-  //-- Por defecto entregar la pagina principal
-  let content_type = "text/html"; //-- le digo de que tipo es
-  let content; //-- contenido
+  //-- Por defecto entregar texto html
+  let content_type = mime_type["html"]; 
+  //-- Contenido solicitado
+  let content; 
 
- 
+  //-- Comprobamos las rutas solicitadas
+  //-- Acceder al recurso raiz
   if(myURL.pathname == '/'){
      //-- Comprobar si hay cookie de ese usuario
     if(user){
@@ -205,6 +212,7 @@ const server = http.createServer((req, res) => {
       //-- Le mandamos el formulario para que se registre
       content = FORMULARIO;
     }
+    ext = "html";
   //-- Acceder al recurso procesar
   }else if (myURL.pathname == '/procesar'){
     //-- Comprobamos si el usuario esta registrado en JSON, si es asi OK
@@ -224,18 +232,20 @@ const server = http.createServer((req, res) => {
     }else{
         content = RESPUESTAERROR;
     }
+    
   }else if (myURL.pathname == '/comprar'){
     content = COMPRAR.replace('PRODUCTOS', productos_carrito)
+
     
   }else if (myURL.pathname == '/finalizar'){
     content = RESPUESTACOMP;
+  
 
   //-- Acceder al recurso producto 1
   }else if(myURL.pathname == '/producto1'){
     content = PRODUCTO1;
     content = content.replace('DESCRIPCION', descripcion[0])
     content = content.replace('PRECIO', precio[0])
-
 
   //-- Acceder al recurso producto 2
   }else if(myURL.pathname == '/producto2'){
@@ -298,7 +308,7 @@ const server = http.createServer((req, res) => {
   //-- Ahora vamos a tener en cuenta las busquedas
   }else if(myURL.pathname =='/productos'){
     console.log("Peticion de Productos!")
-    content_type = "application/json";
+    content_type = mime_type["json"];
 
     //-- Leer los parámetros
     let param1 = myURL.searchParams.get('param1');
@@ -332,13 +342,15 @@ const server = http.createServer((req, res) => {
     content = JSON.stringify(result);
 
     
-  }else if(myURL.pathname == '/cliente.js'){
+  
+  /*
+  else if(myURL.pathname == '/cliente.js'){
     //-- Leer fichero javascript
     console.log("recurso: " + myURL.pathname);
     file = myURL.pathname.split('/')[1]
     fs.readFile(file, 'utf-8', (err,data) => {
         if (err) {
-            console.log("Error: PEPIYOO" + err)
+            console.log("Error: " + err)
             return;
         } else {
           res.setHeader('Content-Type', 'application/javascript');
@@ -347,34 +359,35 @@ const server = http.createServer((req, res) => {
         }
     });
     return;
+    */
+    
     
   }else{
-    res.setHeader('Content-Type','text/html');
-    res.statusCode = 404;
-    res.write(ERROR);
-    res.end();
+    filename = myURL.pathname.split('/')[1];
+    console.log('FILENAME: ' + filename);
+    fs.readFile(filename, (err, data) => {
+      //-- Controlar si la pagina es no encontrada.
+      //-- Devolver pagina de error personalizada, 404 NOT FOUND
+      if (err){
+        res.writeHead(404, {'Content-Type': content_type});
+        res.write(ERROR);
+        res.end();
+      }else{
+        //-- Todo correcto
+        ext = filename.split('.')[1]
+        content_type = mime_type[ext];
+        res.setHeader('Content-Type', content_type);
+        res.write(data);
+        res.end();
+      } 
+    });
     return;
   }
-
- 
-  //-- Esto es un stream de flujo de datos
-  //-- Si hay datos en el cuerpo, se imprimen
-  req.on('data', (cuerpo) => {
-
-    //-- Los datos del cuerpo son caracteres
-    req.setEncoding('utf8');
-    console.log(`Cuerpo (${cuerpo.length} bytes)`)
-    console.log(` ${cuerpo}`);
-  });
-
   //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
-  req.on('end', ()=> {
-    //-- Generar respuesta
-    res.setHeader('Content-Type', content_type);
-    res.write(content);
-    res.end();
-  });
-
+  //-- Generar respuesta
+  res.setHeader('Content-Type', content_type);
+  res.write(content);
+  res.end();
 });
 
 server.listen(PUERTO);
