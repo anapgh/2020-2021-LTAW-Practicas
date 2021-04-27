@@ -1,0 +1,90 @@
+[
+    {
+        "productos": [
+            {
+                "nombre": "producto1",
+                "descripcion": "producto 1",
+                "stock": 20
+            },
+            {
+                "nombre": "producto2",
+                "descripcion": "producto 2",
+                "stock": 100
+            },
+            {
+                "nombre": "producto3",
+                "descripcion": "producto 3",
+                "stock": 50
+            },
+            {
+                "nombre": "producto4",
+                "descripcion": "producto 4",
+                "stock": 60
+            }
+        ]
+    },
+    {
+        "usuarios": [
+            {
+                "usuario": "anapgh",
+                "nombre": "Ana Poveda",
+                "apellidos": "Garcia Herrero",
+                "email": "jeje@"
+            },
+            {
+                "usuario": "root",
+                "nombre": "rotito",
+                "apellidos": "rotete rotetos",
+                "email": "jaja@"
+            }
+        ]
+    },
+    {
+        "pedidos": [
+            {
+                "usuario": "anapgh",
+                "tarjeta": 1345,
+                "direccion": "en mi casa, Nº 2",
+                "productos": [
+                    {
+                        "producto": "producto1",
+                        "unidades": 2
+                    },
+                    {
+                        "producto": "pruducto2",
+                        "unidades": 6
+                    }
+                ]
+            },
+            {
+                "usuario": "root",
+                "tarjeta": 6789,
+                "direccion": "donde siempre",
+                "productos": [
+                    {
+                        "producto": "producto1",
+                        "unidades": 9
+                    },
+                    {
+                        "producto": "producto3",
+                        "unidades": 6
+                    },
+                    {
+                        "producto": "producto4",
+                        "unidades": 1
+                    }
+                ]
+            },
+            {
+                "tarjeta": "",
+                "direccion": "",
+                "productos": [
+                    {
+                        "producto": "producto1",
+                        "unidades": 1
+                    }
+                ]
+            }
+        ]
+    }
+]
