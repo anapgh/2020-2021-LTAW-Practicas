@@ -94,6 +94,7 @@ console.log(productos_json)
 const mime_type = {
   "html" : "text/html",
   "css"  : "text/css",
+  "js"   : "application/javascript",
   "jpg"  : "image/jpg",
   "JPG"  : "image/jpg",
   "jpeg" : "image/jpeg",
@@ -106,7 +107,7 @@ const mime_type = {
 //-- SERVIDOR: Bucle principal de atención a clientes
 const server = http.createServer((req, res) => {
 
-  console.log('\nPetcion recibida');
+  console.log('\nPeticion recibida');
   
   //-- Leer la Cookie recibida y mostrarla en la consola
   const cookie = req.headers.cookie;
@@ -341,27 +342,6 @@ const server = http.createServer((req, res) => {
     //-- Pasamos el resultado a formato JSON con stringify
     content = JSON.stringify(result);
 
-    
-  
-  /*
-  else if(myURL.pathname == '/cliente.js'){
-    //-- Leer fichero javascript
-    console.log("recurso: " + myURL.pathname);
-    file = myURL.pathname.split('/')[1]
-    fs.readFile(file, 'utf-8', (err,data) => {
-        if (err) {
-            console.log("Error: " + err)
-            return;
-        } else {
-          res.setHeader('Content-Type', 'application/javascript');
-          res.write(data);
-          res.end();
-        }
-    });
-    return;
-    */
-    
-    
   }else{
     filename = myURL.pathname.split('/')[1];
     console.log('FILENAME: ' + filename);
@@ -374,8 +354,10 @@ const server = http.createServer((req, res) => {
         res.end();
       }else{
         //-- Todo correcto
+        //-- Devolvemos segun el tipo de mime
         ext = filename.split('.')[1]
         content_type = mime_type[ext];
+        console.log(content_type)
         res.setHeader('Content-Type', content_type);
         res.write(data);
         res.end();
@@ -383,7 +365,6 @@ const server = http.createServer((req, res) => {
     });
     return;
   }
-  //-- Esto solo se ejecuta cuando llega el final del mensaje de solicitud
   //-- Generar respuesta
   res.setHeader('Content-Type', content_type);
   res.write(content);

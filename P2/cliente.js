@@ -35,11 +35,12 @@ caja.oninput = () => {
                 for (let i=0; i < productos.length; i++) {
 
                     //-- Añadir cada producto al párrafo de visualización
-                    display1.innerHTML += productos[i];
-
+                    productos[i]
+                    display1.innerHTML += ("<a href='/" + productos[i] + "'>[" + productos[i] + "]</a></h3>");
+                                            
                     //-- Separamos los productos por ',''
                     if (i < productos.length-1) {
-                    display1.innerHTML += ', ';
+                    display1.innerHTML += '<br>';
                     }
                 }
 
@@ -55,8 +56,8 @@ caja.oninput = () => {
     console.log(caja.value.length);
 
     //-- Peticion AJAX de busqueda
-    //-- La peticion se realia solo si hay al menos 1 carácter
-    if (caja.value.length >= 1) {
+    //-- La peticion se realia solo si hay al menos 3 carácter
+    if (caja.value.length >=3) {
 
       //-- Configurar la petición
       m.open("GET","/productos?param1=" + caja.value, true);
