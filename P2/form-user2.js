@@ -357,7 +357,7 @@ const server = http.createServer((req, res) => {
         //-- Devolvemos segun el tipo de mime
         ext = filename.split('.')[1]
         content_type = mime_type[ext];
-        console.log(content_type)
+        console.log(ext + ': ' + content_type)
         res.setHeader('Content-Type', content_type);
         res.write(data);
         res.end();
