@@ -2,29 +2,112 @@
     {
         "productos": [
                         {
-                            "nombre": "producto1",
-                            "descripcion": "producto 1",
-                            "precio": "10€",
-                            "stock": 20
+                           "producto1":[    {
+                                                "nombre": "bufanda1",
+                                                "descripcion": "bufandita1",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "bufanda2",
+                                                "descripcion": "bufandita 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "bufanda3",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "bufanda4",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "bufanda5",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "bufanda6",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            }
+                                       ]
                         },
-                        {
-                            "nombre": "producto2",
-                            "descripcion": "producto 2",
-                            "precio": "11€",
-                            "stock": 100
+                        {   "producto2":[  {
+                                                "nombre": "gorro1",
+                                                "descripcion": "bufandita1",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "gorro2",
+                                                "descripcion": "bufandita 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "gorro3",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "gorro4",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            }
+
+                                        ]                         
                         },
-                        {
-                            "nombre": "producto3",
-                            "descripcion": "producto 3",
-                            "precio": "12€",
-                            "stock": 50
+                        {   "producto3":[  {
+                                                "nombre": "monedero1",
+                                                "descripcion": "bufandita1",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "monedero2",
+                                                "descripcion": "bufandita 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "monedero3",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "monedero4",
+                                                "descripcion": "producto 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            }
+
+                                        ]                         
                         },
-                        {
-                            "nombre": "producto4",
-                            "descripcion": "producto 4",
-                            "precio": "13€",
-                            "stock": 60
-                         }
+                        {   "producto4":[  {
+                                                "nombre": "jersey1",
+                                                "descripcion": "jersecito1",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            },
+                                            {
+                                                "nombre": "jersey2",
+                                                "descripcion": "jersecito1 2",
+                                                "precio": "11€",
+                                                "stock": 6
+                                            }
+                                        ]                         
+                            }       
                     ]      
     },
     {

@@ -82,11 +82,20 @@ let productos_json = []
 //-- Array de descripciones
 let descripcion = [];
 //-- Array de precios
-let precio = []
+let precio = [];
 for (i=0; i<prod.length; i++){
-    productos_json.push(prod[i]["nombre"]);
-    descripcion.push(prod[i]["descripcion"]);
-    precio.push(prod[i]["precio"]);
+    producto = prod[i]
+    list = producto["producto" + (i+1)]
+    descripcion["producto" + (i+1)] = [];
+    precio["producto" + (i+1)] = [];
+    for (j=0; j<list.length; j++){
+      nombre = list[j]["nombre"]
+      descrip = list[j]["descripcion"]
+      prec = list[j]["precio"]
+      productos_json.push(nombre);
+      descripcion["producto" + (i+1)].push(descrip);
+      precio["producto" + (i+1)].push(prec)
+    }
 }
 console.log(productos_json)
 
@@ -193,7 +202,8 @@ const server = http.createServer((req, res) => {
     if(user){
     //-- Introducir su nombre en la pagina principal
       content = MAIN.replace('<h3></h3>', '<h3>' + user + '</h3>');
-      content = content.replace('<a href=""></a>','<a href="/comprar">[Finalizar Comprar]</a>');
+      content = content.replace('<a class= "elemen" href=""></a>',
+                                '<a  class= "elemen" href="/comprar">Finalizar Comprar</a>');
     }else{
       //-- Pagina principal con el login
       content = MAIN; 
@@ -245,26 +255,37 @@ const server = http.createServer((req, res) => {
   //-- Acceder al recurso producto 1
   }else if(myURL.pathname == '/producto1'){
     content = PRODUCTO1;
-    content = content.replace('DESCRIPCION', descripcion[0])
-    content = content.replace('PRECIO', precio[0])
+    //-- Obtengo las descripciones y precios de cada producto
+    for (i=0; i<6; i++){
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto1"][i])
+      content = content.replace('PRECIO' + (i+1), precio["producto1"][i])
+    }
 
   //-- Acceder al recurso producto 2
   }else if(myURL.pathname == '/producto2'){
     content = PRODUCTO2;
-    content = content.replace('DESCRIPCION', descripcion[1])
-    content = content.replace('PRECIO', precio[1])
-
+    //-- Obtengo las descripciones y precios de cada producto
+    for (i=0; i<6; i++){
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto2"][i])
+      content = content.replace('PRECIO' + (i+1), precio["producto2"][i])
+    }
   //-- Acceder al recurso producto 3
   }else if(myURL.pathname == '/producto3'){
     content = PRODUCTO3;
-    content = content.replace('DESCRIPCION', descripcion[2])
-    content = content.replace('PRECIO', precio[2])
+    //-- Obtengo las descripciones y precios de cada producto
+    for (i=0; i<6; i++){
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto3"][i])
+      content = content.replace('PRECIO' + (i+1), precio["producto3"][i])
+    }
   
   //-- Acceder al recurso producto 4  
   }else if(myURL.pathname == '/producto4'){
     content = PRODUCTO4;
-    content = content.replace('DESCRIPCION', descripcion[3])
-    content = content.replace('PRECIO', precio[3])
+    //-- Obtengo las descripciones y precios de cada producto
+    for (i=0; i<6; i++){
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto4"][i])
+      content = content.replace('PRECIO' + (i+1), precio["producto4"][i])
+    }
 
   //-- Acceder a recurso carrito
   }else if(myURL.pathname == '/producto1/carrito' || myURL.pathname == '/producto2/carrito' ||
@@ -321,12 +342,12 @@ const server = http.createServer((req, res) => {
 
     //-- Se construye nuevo Array de resultado de busquedas
     let result = [];
+    console.log(productos_json)
 
     //-- Para ello
-    //-- Recorremos todos los productos de la bae de datos
+    //-- Recorremos todos los productos de la base de datos
     //-- Y los que cuadren, se añaden al array
     for (let prod of productos_json) {
-
         //-- Pasar a mayúsculas
         prodU = prod.toUpperCase();
 
@@ -343,7 +364,18 @@ const server = http.createServer((req, res) => {
     content = JSON.stringify(result);
 
   }else{
-    filename = myURL.pathname.split('/')[1];
+    path = myURL.pathname.split('/');
+    ext = '';
+    console.log(path.length);
+    if (path.length > 2){
+      path_name = path[1];
+      file = path[2]
+      filename = path_name + '/' + file
+      ext = file.split('.')[1]
+    }else{
+      filename = myURL.pathname.split('/')[1];
+      ext = filename.split('.')[1]
+    }
     console.log('FILENAME: ' + filename);
     fs.readFile(filename, (err, data) => {
       //-- Controlar si la pagina es no encontrada.
@@ -355,7 +387,6 @@ const server = http.createServer((req, res) => {
       }else{
         //-- Todo correcto
         //-- Devolvemos segun el tipo de mime
-        ext = filename.split('.')[1]
         content_type = mime_type[ext];
         console.log(ext + ': ' + content_type)
         res.setHeader('Content-Type', content_type);
