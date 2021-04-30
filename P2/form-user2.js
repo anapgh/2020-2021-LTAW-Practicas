@@ -438,7 +438,7 @@ const server = http.createServer((req, res) => {
       content = content.replace('DESCRIPCION1', descripcion["Bolso"][0])
       content = content.replace('PRECIO1', precio["Bolso"][0])
     }else{
-      content = MAIN;
+      content = main_pag;
     }
   }else{
     path = myURL.pathname.split('/');
