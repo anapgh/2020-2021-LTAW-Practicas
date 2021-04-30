@@ -110,7 +110,8 @@ const mime_type = {
   "png"  : "image/png",
   "gif"  : "image/gif",
   "ico"  : "image/x-icon",
-  "json" : "application/json"
+  "json" : "application/json",
+  "TTF"  : "font/ttf"
 };
 
 //-- SERVIDOR: Bucle principal de atención a clientes
@@ -202,7 +203,7 @@ const server = http.createServer((req, res) => {
     if(user){
     //-- Introducir su nombre en la pagina principal
       content = MAIN.replace('<h3></h3>', '<h3>' + user + '</h3>');
-      content = content.replace('<a class= "elemen" href=""></a>',
+      content = content.replace('<b></b>',
                                 '<a  class= "elemen" href="/comprar">Finalizar Comprar</a>');
     }else{
       //-- Pagina principal con el login
@@ -324,7 +325,7 @@ const server = http.createServer((req, res) => {
     //-- Asignar la cookie del pedido
     res.setHeader('Set-Cookie', "carrito=" + total_cookie);
     content = CARRO.replace('NINGUNO', total );
-    content = content.replace('VOLVER', '<a href="/' + producto + '">[Volver atras]</a>')
+    content = content.replace('VOLVER', "<a class='button' href='/" + producto + "'>Volver atras</a>");
 
   //-- Recurso productos
   //-- Ahora vamos a tener en cuenta las busquedas
