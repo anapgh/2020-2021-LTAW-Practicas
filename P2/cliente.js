@@ -46,7 +46,7 @@ caja.oninput = () => {
                     }else{
                         recurso = 'producto5';
                     }
-                    display1.innerHTML += ("<a href='/" + recurso + "'>" + productos[i] + "</a></h3>");
+                    display1.innerHTML += ("<a class='button' href='/" + recurso + "'>" + productos[i] + "</a></h3>");
                                             
                     //-- Separamos los productos por ',''
                     if (i < productos.length-1) {
