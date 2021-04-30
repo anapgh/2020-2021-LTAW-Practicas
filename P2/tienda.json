@@ -2,7 +2,7 @@
     {
         "productos": [
                         {
-                           "producto1":[    {
+                           "Bufanda":[    {
                                                 "nombre": "bufanda1",
                                                 "descripcion": "Bufanda gris marengo elaborada con punto de ochos.",
                                                 "precio": "14.50€",
@@ -40,7 +40,7 @@
                                             }
                                        ]
                         },
-                        {   "producto2":[  {
+                        {   "Gorro":[  {
                                                 "nombre": "gorro1",
                                                 "descripcion": "Gorro rojo con punto de ochos con borla y dobladillo.",
                                                 "precio": "10€",
@@ -67,7 +67,7 @@
 
                                         ]                         
                         },
-                        {   "producto3":[  {
+                        {   "Monedero":[  {
                                                 "nombre": "monedero1",
                                                 "descripcion": "Monedero gris con brillo plateado redondeado. Tamaño mediano.",
                                                 "precio": "9€",
@@ -94,7 +94,7 @@
 
                                         ]                         
                         },
-                        {   "producto4":[  {
+                        {   "Jersey":[  {
                                                 "nombre": "jersey1",
                                                 "descripcion": "Jersey rojo para mujer elaborado con punto de arroz. Talla única.",
                                                 "precio": "20.50€",
@@ -108,7 +108,7 @@
                                             }
                                         ]                         
                         },
-                        {   "producto5":[  {
+                        {   "Bolso":[  {
                                                 "nombre": "bolso1",
                                                 "descripcion": "Bolso gris marengo con flores. Cierre automático. Tamaño mediano.",
                                                 "precio": "18.50€",
@@ -143,11 +143,11 @@
                             "direccion": "en mi casa, Nº 2",
                             "productos": [
                                             {
-                                                "producto": "producto1",
+                                                "producto": "Bufanda",
                                                 "unidades": 2
                                             },
                                             {
-                                                "producto": "pruducto2",
+                                                "producto": "Gorro",
                                                 "unidades": 6
                                             }
                                          ]
@@ -158,15 +158,15 @@
                             "direccion": "donde siempre",
                             "productos": [
                                             {
-                                                "producto": "producto1",
+                                                "producto": "Gorro",
                                                 "unidades": 9
                                             },
                                             {
-                                                "producto": "producto3",
+                                                "producto": "Monedero",
                                                 "unidades": 6
                                             },
                                             {
-                                                "producto": "producto4",
+                                                "producto": "Bolso",
                                                 "unidades": 1
                                             }
                                          ]

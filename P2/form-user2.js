@@ -87,18 +87,19 @@ let descripcion = [];
 //-- Array de precios
 let precio = [];
 for (i=0; i<prod.length; i++){
-    producto = prod[i]
-    list = producto["producto" + (i+1)]
-    descripcion["producto" + (i+1)] = [];
-    precio["producto" + (i+1)] = [];
-    for (j=0; j<list.length; j++){
-      nombre = list[j]["nombre"]
-      descrip = list[j]["descripcion"]
-      prec = list[j]["precio"]
-      productos_json.push(nombre);
-      descripcion["producto" + (i+1)].push(descrip);
-      precio["producto" + (i+1)].push(prec)
-    }
+  key = Object.keys(prod[i])[0]
+  producto = prod[i]
+  list = producto[key]
+  descripcion[key] = [];
+  precio[key] = [];
+  for (j=0; j<list.length; j++){
+    nombre = list[j]["nombre"]
+    descrip = list[j]["descripcion"]
+    prec = list[j]["precio"]
+    productos_json.push(nombre);
+    descripcion[key].push(descrip);
+    precio[key].push(prec)
+  }
 }
 console.log(productos_json)
 
@@ -205,7 +206,7 @@ const server = http.createServer((req, res) => {
      //-- Comprobar si hay cookie de ese usuario
     if(user){
     //-- Introducir su nombre en la pagina principal
-      content = MAIN.replace('<h3></h3>', '<h3>' + user + '</h3>');
+      content = MAIN.replace('<h3></h3>', '<h3> Usuario: ' + user + '</h3>');
       content = content.replace('<b></b>',
                                 '<a  class= "elemen" href="/comprar">Finalizar Comprar</a>');
     }else{
@@ -261,8 +262,8 @@ const server = http.createServer((req, res) => {
     content = PRODUCTO1;
     //-- Obtengo las descripciones y precios de cada producto
     for (i=0; i<6; i++){
-      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto1"][i])
-      content = content.replace('PRECIO' + (i+1), precio["producto1"][i])
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["Bufanda"][i])
+      content = content.replace('PRECIO' + (i+1), precio["Bufanda"][i])
     }
 
   //-- Acceder al recurso producto 2
@@ -270,16 +271,16 @@ const server = http.createServer((req, res) => {
     content = PRODUCTO2;
     //-- Obtengo las descripciones y precios de cada producto
     for (i=0; i<6; i++){
-      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto2"][i])
-      content = content.replace('PRECIO' + (i+1), precio["producto2"][i])
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["Gorro"][i])
+      content = content.replace('PRECIO' + (i+1), precio["Gorro"][i])
     }
   //-- Acceder al recurso producto 3
   }else if(myURL.pathname == '/producto3'){
     content = PRODUCTO3;
     //-- Obtengo las descripciones y precios de cada producto
     for (i=0; i<6; i++){
-      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto3"][i])
-      content = content.replace('PRECIO' + (i+1), precio["producto3"][i])
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["Monedero"][i])
+      content = content.replace('PRECIO' + (i+1), precio["Monedero"][i])
     }
   
   //-- Acceder al recurso producto 4  
@@ -287,16 +288,16 @@ const server = http.createServer((req, res) => {
     content = PRODUCTO4;
     //-- Obtengo las descripciones y precios de cada producto
     for (i=0; i<6; i++){
-      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto4"][i])
-      content = content.replace('PRECIO' + (i+1), precio["producto4"][i])
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["Jersey"][i])
+      content = content.replace('PRECIO' + (i+1), precio["Jersey"][i])
     }
    //-- Acceder al recurso producto 5
   }else if(myURL.pathname == '/producto5'){
     content = PRODUCTO5;
     //-- Obtengo las descripciones y precios de cada producto
     for (i=0; i<6; i++){
-      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto5"][i])
-      content = content.replace('PRECIO' + (i+1), precio["producto5"][i])
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["Bolso"][i])
+      content = content.replace('PRECIO' + (i+1), precio["Bolso"][i])
     }
 
   //-- Acceder a recurso carrito
@@ -304,7 +305,19 @@ const server = http.createServer((req, res) => {
            myURL.pathname == '/producto3/carrito' || myURL.pathname == '/producto4/carrito' ||
            myURL.pathname == '/producto5/carrito' ){
     //-- Extraigo el producto
-    producto = myURL.pathname.split('/')[1];
+    producto_path = myURL.pathname.split('/')[1];
+    //-- Establecer el nombre del producto
+    if (producto_path =='producto1'){
+      producto = 'Bufanda';
+    }else if( producto_path == 'producto2'){
+      producto = 'Gorro';
+    }else if( producto_path == 'producto3'){
+      producto = 'Monedero';
+    }else if( producto_path == 'producto4'){
+      producto = 'Jersey';
+    }else{
+      producto = 'Bolso';
+    }
     //-- Añado el producto al array de productos
     productos.push(producto);
     //-- Contar la cantidad de cada producto
@@ -337,7 +350,7 @@ const server = http.createServer((req, res) => {
     //-- Asignar la cookie del pedido
     res.setHeader('Set-Cookie', "carrito=" + total_cookie);
     content = CARRO.replace('NINGUNO', total );
-    content = content.replace('VOLVER', "<a class='button' href='/" + producto + "'>Volver atras</a>");
+    content = content.replace('VOLVER', "<a class='button' href='/" + producto_path + "'>Volver atras</a>");
 
   //-- Recurso productos
   //-- Ahora vamos a tener en cuenta las busquedas
@@ -355,7 +368,6 @@ const server = http.createServer((req, res) => {
 
     //-- Se construye nuevo Array de resultado de busquedas
     let result = [];
-    console.log(productos_json)
 
     //-- Para ello
     //-- Recorremos todos los productos de la base de datos
@@ -395,7 +407,6 @@ const server = http.createServer((req, res) => {
       filename = myURL.pathname.split('/')[1];
       ext = filename.split('.')[1]
     }
-    console.log('FILENAME: ' + filename);
     fs.readFile(filename, (err, data) => {
       //-- Controlar si la pagina es no encontrada.
       //-- Devolver pagina de error personalizada, 404 NOT FOUND
@@ -407,7 +418,6 @@ const server = http.createServer((req, res) => {
         //-- Todo correcto
         //-- Devolvemos segun el tipo de mime
         content_type = mime_type[ext];
-        console.log(ext + ': ' + content_type)
         res.setHeader('Content-Type', content_type);
         res.write(data);
         res.end();
