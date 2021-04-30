@@ -379,12 +379,18 @@ const server = http.createServer((req, res) => {
   }else{
     path = myURL.pathname.split('/');
     ext = '';
-    console.log(path.length);
     if (path.length > 2){
-      path_name = path[1];
-      file = path[2]
-      filename = path_name + '/' + file
+      file = path[path.length-1]
       ext = file.split('.')[1]
+      if(path.length == 3){
+        if (path[1].startsWith('producto')){
+          filename = file
+        }else{
+          filename = path[1] + '/' + file
+        }
+       }else{
+          filename = path[2] + '/' + file
+       }
     }else{
       filename = myURL.pathname.split('/')[1];
       ext = filename.split('.')[1]
