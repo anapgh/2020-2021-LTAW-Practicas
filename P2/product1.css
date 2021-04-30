@@ -50,54 +50,60 @@ h2{
     position: absolute;
     width: 75%;
     margin: 20px auto;
-    color: #fff;
     padding-left: 150px;
     padding-bottom: 60px;
-}
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 
+}
 #dos{
     position: absolute;
     width: 75%;
     margin: 20px auto;
-    color: #fff;
     padding-left: 150px;
     padding-top: 300px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 }
 
 #tres{
     position: absolute;
     width: 75%;
     margin: 20px auto;
-    color: #fff;
     padding-left: 150px;
     padding-top: 600px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 }
 
 #cuatro{
     position: absolute;
     width: 75%;
     margin: 20px auto;
-    color: #fff;
     padding-left: 150px;;
     padding-top: 900px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 }
 
 #cinco{
     position: absolute;
     width: 75%;
     margin: 20px auto;
-    color: #fff;
     padding-left: 150px;
     padding-top: 1200px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 }
 
 #seis{
     position: absolute;
     width: 75%;
     margin: 20px auto;
-    color: #fff;
     padding-left: 150px;
     padding-top: 1500px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 }
 
 
