@@ -114,7 +114,7 @@ const mime_type = {
   "gif"  : "image/gif",
   "ico"  : "image/x-icon",
   "json" : "application/json",
-  "TTF"  : "font/ttf"
+  "ttf"  : "font/ttf"
 };
 
 //-- SERVIDOR: Bucle principal de atención a clientes
