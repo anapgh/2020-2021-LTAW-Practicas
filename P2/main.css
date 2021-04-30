@@ -1,11 +1,11 @@
 @font-face {
-    font-family: "Harlow";
-    src : url(letra/HARLOWSI.TTF);
+    font-family: "cafe";
+    src : url(letra/Aarvark-Cafe.ttf);
   }
 
 body{
     background-image: url(imagenes/fondo1.jpg);
-    font-family: "Harlow";
+    font-family: "cafe";
 }
 
 input{
@@ -43,6 +43,25 @@ h2{
 
 #display1{
     padding-left: 230px;
+}
+
+#productos{
+    text-align: center;
+    background-image: url(imagenes/fondo2.jpg);
+    background-size: cover;
+    padding-top:100px;
+    padding-bottom: 100px;
+}
+
+.logo{
+    border-radius: 60px; 
+    width: 160px;
+}
+
+.logo:hover{
+    background-color: burlywood;
+    border:coral solid;
+    border-radius: 60px;
 }
 
 .button:hover{
