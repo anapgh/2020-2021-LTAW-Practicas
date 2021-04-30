@@ -4,37 +4,37 @@
                         {
                            "producto1":[    {
                                                 "nombre": "bufanda1",
-                                                "descripcion": "bufandita1",
-                                                "precio": "11€",
+                                                "descripcion": "Bufanda gris marengo elaborada con punto de ochos.",
+                                                "precio": "14.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "bufanda2",
-                                                "descripcion": "bufandita 2",
-                                                "precio": "11€",
+                                                "descripcion": "Bufanda blanca elaborada con punto de arroz.",
+                                                "precio": "13.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "bufanda3",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Bufanda roja suave.",
+                                                "precio": "16€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "bufanda4",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Bufanda azul marina elaborada con punto ingles.",
+                                                "precio": "14€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "bufanda5",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Braga colorida.",
+                                                "precio": "11.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "bufanda6",
-                                                "descripcion": "producto 2",
+                                                "descripcion": "Braga de tonos rosas.",
                                                 "precio": "11€",
                                                 "stock": 6
                                             }
@@ -42,26 +42,26 @@
                         },
                         {   "producto2":[  {
                                                 "nombre": "gorro1",
-                                                "descripcion": "bufandita1",
-                                                "precio": "11€",
+                                                "descripcion": "Gorro rojo con punto de ochos con borla y dobladillo.",
+                                                "precio": "10€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "gorro2",
-                                                "descripcion": "bufandita 2",
-                                                "precio": "11€",
+                                                "descripcion": "Gorro azul marino y blanco con punto de ochos con borla y dobladillo.",
+                                                "precio": "11.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "gorro3",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Gorro gris marengo con punto de ochos con borla.",
+                                                "precio": "9€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "gorro4",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Gorro gris marengo y blanco con punto ingles y dobladillo.",
+                                                "precio": "11.50€",
                                                 "stock": 6
                                             }
 
@@ -69,26 +69,26 @@
                         },
                         {   "producto3":[  {
                                                 "nombre": "monedero1",
-                                                "descripcion": "bufandita1",
-                                                "precio": "11€",
+                                                "descripcion": "Monedero gris con brillo plateado redondeado. Tamaño mediano.",
+                                                "precio": "9€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "monedero2",
-                                                "descripcion": "bufandita 2",
-                                                "precio": "11€",
+                                                "descripcion": "Monedero morado con brillo dorado cuadrado. Tamaño pequeño.",
+                                                "precio": "7.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "monedero3",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Monedero negro con brillo plateado cuadrado.Tamaño mediano.",
+                                                "precio": "8.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "monedero4",
-                                                "descripcion": "producto 2",
-                                                "precio": "11€",
+                                                "descripcion": "Monedero verde con brillo dorado cuadrado. Tanaño mediano.",
+                                                "precio": "8.50€",
                                                 "stock": 6
                                             }
 
@@ -96,18 +96,26 @@
                         },
                         {   "producto4":[  {
                                                 "nombre": "jersey1",
-                                                "descripcion": "jersecito1",
-                                                "precio": "11€",
+                                                "descripcion": "Jersey rojo para mujer elaborado con punto de arroz. Talla única.",
+                                                "precio": "20.50€",
                                                 "stock": 6
                                             },
                                             {
                                                 "nombre": "jersey2",
-                                                "descripcion": "jersecito1 2",
-                                                "precio": "11€",
+                                                "descripcion": "Jersey gris marengo hombre elaborado con punto de ochos. Talla única.",
+                                                "precio": "25.50€",
                                                 "stock": 6
                                             }
                                         ]                         
-                            }       
+                        },
+                        {   "producto5":[  {
+                                                "nombre": "bolso1",
+                                                "descripcion": "Bolso gris marengo con flores. Cierre automatico. Tamaño mediano.",
+                                                "precio": "18.50€",
+                                                "stock": 6
+                                            }
+                                        ]                         
+                        }        
                     ]      
     },
     {
