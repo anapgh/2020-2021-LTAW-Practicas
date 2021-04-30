@@ -33,24 +33,13 @@ caja.oninput = () => {
 
                 //--Recorrer los productos del objeto JSON
                 for (let i=0; i < productos.length; i++) {
-                    let recurso;
-                    //-- Añadir cada producto al párrafo de visualización
-                    if (productos[i].includes('bufanda')){
-                        recurso = 'producto1';
-                    }else if(productos[i].includes('gorro')){
-                        recurso = 'producto2';
-                    }else if(productos[i].includes('monedero')){
-                        recurso = 'producto3';
-                    }else if(productos[i].includes('jersey')){
-                        recurso = 'producto4';
-                    }else{
-                        recurso = 'producto5';
-                    }
-                    display1.innerHTML += ("<a class='button' href='/" + recurso + "'>" + productos[i] + "</a></h3>");
+                 
+                    //-- Escribir en el display
+                    display1.innerHTML += productos[i];
                                             
                     //-- Separamos los productos por ',''
                     if (i < productos.length-1) {
-                    display1.innerHTML += '<br>';
+                    display1.innerHTML += ',';
                     }
                 }
 

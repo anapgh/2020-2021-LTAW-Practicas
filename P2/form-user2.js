@@ -61,6 +61,15 @@ const RESPUESTACOMP = fs.readFileSync('form-comprar-res.html', 'utf-8');
 //-- nos devuelve la estructura del json
 const tienda = JSON.parse(tienda_json);
 
+//-- Variable de busqueda
+let busqueda;
+
+//-- Variable pagina principal
+let main_pag;
+
+//-- Contenido solicitado
+let content; 
+
 //-- Defino arrays
 let nombre_reg = [];
 let password_reg = [];
@@ -132,6 +141,7 @@ const server = http.createServer((req, res) => {
   //-- Variable para guardar el carrito
   let carrito;
 
+  
   //-- Comprobamos si hay cookies
   if (cookie) {
     console.log("Cookie: " + cookie);
@@ -197,9 +207,7 @@ const server = http.createServer((req, res) => {
 
   //-- Por defecto entregar texto html
   let content_type = mime_type["html"]; 
-  //-- Contenido solicitado
-  let content; 
-
+  
   //-- Comprobamos las rutas solicitadas
   //-- Acceder al recurso raiz
   if(myURL.pathname == '/'){
@@ -209,9 +217,11 @@ const server = http.createServer((req, res) => {
       content = MAIN.replace('<h3></h3>', '<h3> Usuario: ' + user + '</h3>');
       content = content.replace('<b></b>',
                                 '<a  class= "elemen" href="/comprar">Finalizar Comprar</a>');
+      main_pag = content;
     }else{
       //-- Pagina principal con el login
       content = MAIN; 
+      main_pag = content;
     }
   
   //-- Acceder al recurso login
@@ -270,7 +280,7 @@ const server = http.createServer((req, res) => {
   }else if(myURL.pathname == '/producto2'){
     content = PRODUCTO2;
     //-- Obtengo las descripciones y precios de cada producto
-    for (i=0; i<6; i++){
+    for (i=0; i<4; i++){
       content = content.replace('DESCRIPCION' + (i+1), descripcion["Gorro"][i])
       content = content.replace('PRECIO' + (i+1), precio["Gorro"][i])
     }
@@ -278,7 +288,7 @@ const server = http.createServer((req, res) => {
   }else if(myURL.pathname == '/producto3'){
     content = PRODUCTO3;
     //-- Obtengo las descripciones y precios de cada producto
-    for (i=0; i<6; i++){
+    for (i=0; i<4; i++){
       content = content.replace('DESCRIPCION' + (i+1), descripcion["Monedero"][i])
       content = content.replace('PRECIO' + (i+1), precio["Monedero"][i])
     }
@@ -287,7 +297,7 @@ const server = http.createServer((req, res) => {
   }else if(myURL.pathname == '/producto4'){
     content = PRODUCTO4;
     //-- Obtengo las descripciones y precios de cada producto
-    for (i=0; i<6; i++){
+    for (i=0; i<2; i++){
       content = content.replace('DESCRIPCION' + (i+1), descripcion["Jersey"][i])
       content = content.replace('PRECIO' + (i+1), precio["Jersey"][i])
     }
@@ -295,10 +305,8 @@ const server = http.createServer((req, res) => {
   }else if(myURL.pathname == '/producto5'){
     content = PRODUCTO5;
     //-- Obtengo las descripciones y precios de cada producto
-    for (i=0; i<6; i++){
-      content = content.replace('DESCRIPCION' + (i+1), descripcion["Bolso"][i])
-      content = content.replace('PRECIO' + (i+1), precio["Bolso"][i])
-    }
+    content = content.replace('DESCRIPCION1' , descripcion["Bolso"][0])
+    content = content.replace('PRECIO1', precio["Bolso"][0])
 
   //-- Acceder a recurso carrito
   }else if(myURL.pathname == '/producto1/carrito' || myURL.pathname == '/producto2/carrito' ||
@@ -381,13 +389,57 @@ const server = http.createServer((req, res) => {
         if (prodU.startsWith(param1)) {
             result.push(prod);
         }
-        
     }
     //-- Imprimimos el aray de resultado de busquedas
     console.log(result);
+    busqueda = result;
     //-- Pasamos el resultado a formato JSON con stringify
     content = JSON.stringify(result);
 
+  }else if(myURL.pathname == '/buscar'){
+    producto1 = ['bufanda1', 'bufanda2', 'bufanda3', 'bufanda4', 'bufanda5', 'bufanda6'];
+    producto2 = ['gorro1', 'gorro2', 'goro3', 'gorro4'];
+    producto3 = ['monedero1', 'monedero2', 'monedero3', 'monedero4'];
+    producto4 = ['jersey1', 'jersey2'];
+    producto5 = ['bolso1']
+    console.log(producto1.includes(busqueda[0]))
+    //-- Comprobamos que producto ha seleccionado y lo redirigimos
+    if(producto1.includes(busqueda[0])){
+      content = PRODUCTO1;
+      //-- Obtengo las descripciones y precios de cada producto
+      for (i=0; i<6; i++){
+        content = content.replace('DESCRIPCION' + (i+1), descripcion["Bufanda"][i])
+        content = content.replace('PRECIO' + (i+1), precio["Bufanda"][i])
+      }
+    }else if(producto2.includes(busqueda[0])){
+      content = PRODUCTO2;
+      //-- Obtengo las descripciones y precios de cada producto
+      for (i=0; i<4; i++){
+        content = content.replace('DESCRIPCION' + (i+1), descripcion["Gorro"][i])
+        content = content.replace('PRECIO' + (i+1), precio["Gorro"][i])
+      }
+    }else if(producto3.includes(busqueda[0])){
+      content = PRODUCTO3;
+      //-- Obtengo las descripciones y precios de cada producto
+      for (i=0; i<4; i++){
+        content = content.replace('DESCRIPCION' + (i+1), descripcion["Monedero"][i])
+        content = content.replace('PRECIO' + (i+1), precio["Monedero"][i])
+      }
+    }else if(producto4.includes(busqueda[0])){
+      content = PRODUCTO4;
+      //-- Obtengo las descripciones y precios de cada producto
+      for (i=0; i<2; i++){
+        content = content.replace('DESCRIPCION' + (i+1), descripcion["Jersey"][i])
+        content = content.replace('PRECIO' + (i+1), precio["Jersey"][i])
+      }
+    }else if(producto5.includes(busqueda[0])){
+      content = PRODUCTO5;
+      //-- Obtengo las descripciones y precios de cada producto
+      content = content.replace('DESCRIPCION1', descripcion["Bolso"][0])
+      content = content.replace('PRECIO1', precio["Bolso"][0])
+    }else{
+      content = MAIN;
+    }
   }else{
     path = myURL.pathname.split('/');
     ext = '';
