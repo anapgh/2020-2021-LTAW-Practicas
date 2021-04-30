@@ -4,26 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Formulario de compra</title>
 </head>
 <body>
+    <h1><img src="imagenes/logo-tienda3.jpg" id='logo'></h1>
     <form action="/finalizar" method="get">
-        <h2>Pedido:</h2>
-        <br>
+        <h2>PEDIDO:</h2>
         <div id='pedido'>
             PRODUCTOS
+        </div> 
+        <br>
+        <br>
+        <div id ='respuesta'>
+            Direccion de envio:
+            <input type="text" name="direccion"/>
+            <p></p>
+            Numero de tarjeta de credito:
+            <input type="text" name="tarjeta" />
+            <p></p>
+            <input class='button' type="submit" value="Enviar"/>
+            <br>
+            <br>
+            <a class='button' href="/">Acceso a pagina principal</a>
         </div>
-        <br>
-        <br>
-        Direccion de envio:
-        <input type="text" name="direccion"/>
-        <p></p>
-        Numero de tarjeta de credito:
-        <input type="text" name="tarjeta" />
-        <p></p>
-          <input type="submit" value="Enviar"/>
     </form>
     <br>
-    <a href="/">[Acceso a pagina principal]</a>
+    
 </body>
 </html>

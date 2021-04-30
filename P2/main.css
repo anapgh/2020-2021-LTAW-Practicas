@@ -1,5 +1,11 @@
+@font-face {
+    font-family: "Harlow";
+    src : url(letra/HARLOWSI.TTF);
+  }
+
 body{
     background-image: url(imagenes/fondo1.jpg);
+    font-family: "Harlow";
 }
 
 input{
@@ -12,6 +18,11 @@ input{
     width: 400px;
     margin-top: 10px;
     margin-left: 20px;
+    padding-right: 10px;
+}
+
+h2{
+    text-align: center;
 }
 
 #barra{
@@ -29,7 +40,29 @@ input{
     font-size: 20px;
 }
 
+
 #display1{
     padding-left: 230px;
+}
+
+.button:hover{
+    background-color: burlywood;
+    border:coral solid;
+}
+
+#pedido{
+    text-align: center;
+    margin: 20px auto;
+    margin-top: 50px;
+}
+
+#respuesta{
+    text-align: center;
+    background-color: rgba(228, 228, 209, 0.699);
+    margin-left: 120px ;
+    margin-right: 120px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
 }
 
