@@ -25,6 +25,9 @@ const PRODUCTO3 = fs.readFileSync('product3.html', 'utf-8');
 //-- Pagina del producto 4
 const PRODUCTO4 = fs.readFileSync('product4.html', 'utf-8');
 
+//-- Pagina del producto 5
+const PRODUCTO5 = fs.readFileSync('product5.html', 'utf-8');
+
 //-- Pagina del carrito
 const CARRO = fs.readFileSync('carrito.html', 'utf-8');
 
@@ -287,10 +290,19 @@ const server = http.createServer((req, res) => {
       content = content.replace('DESCRIPCION' + (i+1), descripcion["producto4"][i])
       content = content.replace('PRECIO' + (i+1), precio["producto4"][i])
     }
+   //-- Acceder al recurso producto 5
+  }else if(myURL.pathname == '/producto5'){
+    content = PRODUCTO5;
+    //-- Obtengo las descripciones y precios de cada producto
+    for (i=0; i<6; i++){
+      content = content.replace('DESCRIPCION' + (i+1), descripcion["producto5"][i])
+      content = content.replace('PRECIO' + (i+1), precio["producto5"][i])
+    }
 
   //-- Acceder a recurso carrito
   }else if(myURL.pathname == '/producto1/carrito' || myURL.pathname == '/producto2/carrito' ||
-           myURL.pathname == '/producto3/carrito' || myURL.pathname == '/producto4/carrito'){
+           myURL.pathname == '/producto3/carrito' || myURL.pathname == '/producto4/carrito' ||
+           myURL.pathname == '/producto5/carrito' ){
     //-- Extraigo el producto
     producto = myURL.pathname.split('/')[1];
     //-- Añado el producto al array de productos
@@ -397,6 +409,7 @@ const server = http.createServer((req, res) => {
     });
     return;
   }
+  
   //-- Generar respuesta
   res.setHeader('Content-Type', content_type);
   res.write(content);

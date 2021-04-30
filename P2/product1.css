@@ -106,4 +106,13 @@ h2{
     color: rgb(0, 0, 0);
 }
 
+#respuesta{
+    text-align: center;
+    background-color: rgba(228, 228, 209, 0.699);
+    margin-left: 120px ;
+    margin-right: 120px ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
 
