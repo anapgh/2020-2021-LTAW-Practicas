@@ -1,5 +1,11 @@
+@font-face {
+    font-family: "cafe";
+    src : url(letra/Aarvark-Cafe.ttf);
+  }
+
 body{
     background-image: url(imagenes/fondo1.jpg);
+    font-family: "cafe";
 }
 
 input{
