@@ -1,0 +1,205 @@
+[
+    {
+        "productos": [
+            {
+                "Bufanda": [
+                    {
+                        "nombre": "bufanda1",
+                        "descripcion": "Bufanda gris marengo elaborada con punto de ochos.",
+                        "precio": "14.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "bufanda2",
+                        "descripcion": "Bufanda blanca elaborada con punto de arroz.",
+                        "precio": "13.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "bufanda3",
+                        "descripcion": "Bufanda roja suave.",
+                        "precio": "16€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "bufanda4",
+                        "descripcion": "Bufanda azul marina elaborada con punto ingles.",
+                        "precio": "14€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "bufanda5",
+                        "descripcion": "Braga colorida.",
+                        "precio": "11.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "bufanda6",
+                        "descripcion": "Braga de tonos rosas.",
+                        "precio": "11€",
+                        "stock": 6
+                    }
+                ]
+            },
+            {
+                "Gorro": [
+                    {
+                        "nombre": "gorro1",
+                        "descripcion": "Gorro rojo con punto de ochos con borla y dobladillo.",
+                        "precio": "10€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "gorro2",
+                        "descripcion": "Gorro azul marino y blanco con punto de ochos con borla y dobladillo.",
+                        "precio": "11.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "gorro3",
+                        "descripcion": "Gorro gris marengo con punto de ochos con borla.",
+                        "precio": "9€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "gorro4",
+                        "descripcion": "Gorro gris marengo y blanco con punto ingles y dobladillo.",
+                        "precio": "11.50€",
+                        "stock": 6
+                    }
+                ]
+            },
+            {
+                "Monedero": [
+                    {
+                        "nombre": "monedero1",
+                        "descripcion": "Monedero gris con brillo plateado redondeado. Tamaño mediano.",
+                        "precio": "9€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "monedero2",
+                        "descripcion": "Monedero morado con brillo dorado cuadrado. Tamaño pequeño.",
+                        "precio": "7.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "monedero3",
+                        "descripcion": "Monedero negro con brillo plateado cuadrado.Tamaño mediano.",
+                        "precio": "8.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "monedero4",
+                        "descripcion": "Monedero verde con brillo dorado cuadrado. Tanaño mediano.",
+                        "precio": "8.50€",
+                        "stock": 6
+                    }
+                ]
+            },
+            {
+                "Jersey": [
+                    {
+                        "nombre": "jersey1",
+                        "descripcion": "Jersey rojo para mujer elaborado con punto de arroz. Talla única.",
+                        "precio": "20.50€",
+                        "stock": 6
+                    },
+                    {
+                        "nombre": "jersey2",
+                        "descripcion": "Jersey gris marengo hombre elaborado con punto de ochos. Talla única.",
+                        "precio": "25.50€",
+                        "stock": 6
+                    }
+                ]
+            },
+            {
+                "Bolso": [
+                    {
+                        "nombre": "bolso1",
+                        "descripcion": "Bolso gris marengo con flores. Cierre automático. Tamaño mediano.",
+                        "precio": "18.50€",
+                        "stock": 6
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "usuarios": [
+            {
+                "usuario": "anapgh",
+                "nombre": "Ana Poveda Garcia Herrero",
+                "email": "jeje@",
+                "password": "anita"
+            },
+            {
+                "usuario": "root",
+                "nombre": "rotito rotete rotetos",
+                "email": "jaja@",
+                "password": "rotito"
+            }
+        ]
+    },
+    {
+        "pedidos": [
+            {
+                "usuario": "anapgh",
+                "tarjeta": 1345,
+                "direccion": "en mi casa, Nº 2",
+                "productos": [
+                    {
+                        "producto": "Bufanda",
+                        "unidades": 2
+                    },
+                    {
+                        "producto": "Gorro",
+                        "unidades": 6
+                    }
+                ]
+            },
+            {
+                "usuario": "root",
+                "tarjeta": 6789,
+                "direccion": "donde siempre",
+                "productos": [
+                    {
+                        "producto": "Gorro",
+                        "unidades": 9
+                    },
+                    {
+                        "producto": "Monedero",
+                        "unidades": 6
+                    },
+                    {
+                        "producto": "Bolso",
+                        "unidades": 1
+                    }
+                ]
+            },
+            {
+                "usuario": "anapgh",
+                "tarjeta": "123456",
+                "direccion": "en mi casa",
+                "productos": [
+                    {
+                        "producto": "Bufanda",
+                        "unidades": 2
+                    },
+                    {
+                        "producto": "Monedero",
+                        "unidades": 1
+                    },
+                    {
+                        "producto": "Jersey",
+                        "unidades": 2
+                    },
+                    {
+                        "producto": "Bolso",
+                        "unidades": 3
+                    }
+                ]
+            }
+        ]
+    }
+]
