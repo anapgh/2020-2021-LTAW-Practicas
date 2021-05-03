@@ -4,7 +4,7 @@ const W3CWebSocket = require('websocket').w3cwebsocket;
 const colors = require('colors');
 
 //-- Crear el objeto cliente con la URL a la que conectarse
-const client = new W3CWebSocket('ws://localhost:8080/');
+const client = new W3CWebSocket('ws://localhost:8081/');
 
 //-- Función de retrollamada al establecerse la conexión
 client.onopen = () => {
