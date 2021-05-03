@@ -1,5 +1,4 @@
-//-- Imprimir información sobre la solicitud recibida
-
+//-- Importación de módulos
 const http = require('http');
 const fs = require('fs');
 const PUERTO = 9000;
@@ -31,13 +30,6 @@ const PRODUCTO5 = fs.readFileSync('product5.html', 'utf-8');
 //-- Pagina del carrito
 const CARRO = fs.readFileSync('carrito.html', 'utf-8');
 
-//-- Nombre del fichero JSON a leer
-const FICHERO_JSON = ("tienda.json");
-
-//-- Leer el fichero JSON
-//-- de esta forma lo hacemos sincrona
-const  tienda_json = fs.readFileSync(FICHERO_JSON);
-
 //-- Nombre del fichero JSON de salida
 const FICHERO_JSON_OUT = "tienda-modi.json"
 
@@ -56,6 +48,12 @@ const COMPRAR = fs.readFileSync('form-comprar.html','utf-8');
 //-- HTML de la página de respuesta de la compra
 const RESPUESTACOMP = fs.readFileSync('form-comprar-res.html', 'utf-8');
 
+//-- Nombre del fichero JSON a leer
+const FICHERO_JSON = ("tienda.json");
+
+//-- Leer el fichero JSON
+//-- de esta forma lo hacemos sincrona
+const  tienda_json = fs.readFileSync(FICHERO_JSON);
 
 //-- Crear la estructura tienda a partir del contenido del fichero
 //-- nos devuelve la estructura del json
