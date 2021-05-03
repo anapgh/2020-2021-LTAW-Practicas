@@ -150,18 +150,18 @@ const server = http.createServer((req, res) => {
     //-- Recorrer todos los pares nombre-valor
     pares.forEach((element, index) => {
 
-    //-- Obtener los nombres y valores por separado
-    let [nombre, valor] = element.split('=');
+      //-- Obtener los nombres y valores por separado
+      let [nombre, valor] = element.split('=');
 
-    //-- Leer nombres
-    //-- Solo si el nombre es 'user'
-    if (nombre.trim() === 'user') {
-      user = valor;
-    //-- Si el nombre es 'carrito'
-    }else if (nombre.trim() === 'carrito') {
-      carrito = valor;
-    }
-  });
+      //-- Leer nombres
+      //-- Solo si el nombre es 'user'
+      if (nombre.trim() === 'user') {
+        user = valor;
+      //-- Si el nombre es 'carrito'
+      }else if (nombre.trim() === 'carrito') {
+        carrito = valor;
+      }
+    });
   }else {
     console.log("Petición sin cookie");
   }
