@@ -1,10 +1,12 @@
+//-- Importamos el objeto server del paquete websocket
 const WebSocketServer = require('websocket').server;
+//-- Importamos el modulo http
 const http = require('http');
 
 //-- Vamos a dar un poquito de color...
 const colors = require('colors');
 
-const PUERTO = 8080;
+const PUERTO = 8081;
 
 //-- Crear servidor. No tiene recursos implementados
 //-- (siempre devuelve error)
@@ -25,13 +27,16 @@ wsServer.on('request', (req) => {
     const connection = req.accept();
 
     //-- Retrollamada de mensaje recibido
+    //-- El mensaje recibido se encuentra en el objeto'message'
     connection.on('message', (message) => {
         console.log("MENSAGE RECIBIDO");
         console.log("  Tipo de mensaje: " + message.type);
         if (message.type === 'utf8') {
+            //-- Datos como cadena de texto
             console.log("  Mensaje: " + message.utf8Data.green);
 
             //-- Enviar el eco
+            //-- Envio mensaje de texto
             connection.sendUTF(message.utf8Data);
         }
     });
