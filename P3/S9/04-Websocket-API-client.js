@@ -9,7 +9,7 @@ const client = new W3CWebSocket('ws://localhost:8080/');
 //-- Función de retrollamada al establecerse la conexión
 client.onopen = () => {
     console.log('CLIENTE. Conectado al Servidor'.yellow);
-
+    //-- Mensaje a enviar al servidor websocket
     const MSG = "Holiiii-";
     let cont = 1;
 
