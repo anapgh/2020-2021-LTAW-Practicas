@@ -74,10 +74,16 @@ function check_command(msg){
 io.on('connect', (socket) => {
   
   console.log('** NUEVA CONEXIÓN **'.yellow);
+  //-- Incrementamos el numero de usuarios conectados
+  num_user += 1;
+  console.log('Numero de usuarios conectados: ' + num_user);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
+    //-- Decrementamos el numero de usuarios conectados
+    num_user -= 1;
+    console.log('Numero de usuarios conectados: ' + num_user);
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
