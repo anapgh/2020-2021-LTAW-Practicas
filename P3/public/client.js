@@ -52,6 +52,5 @@ msg_nick.onchange = () => {
   if(msg_nick.value){
     nickname = msg_nick.value;
   }
-  //(msg_nick.parentNode).removeChild(msg_nick);
   console.log(nickname);
 }
