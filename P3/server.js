@@ -35,6 +35,15 @@ let date_msg = ("Fecha actual: <b>" + fecha.toUTCString()+ "</b>");
 //-- Para un recurso distinto
 let error_msg = ("Comando no reconocido");
 
+//-- Mensaje de Bienvenida
+let bienv_msg = ('>>> ¡Bienvenido al chat!');
+
+//-- Mensaje de nueva conexión
+let conec_msg = ('>>> Nuevo usuario conectado');
+
+//-- Mensaje fin conexión
+let desc_msg = ('>>> Un usuario ha abandonado el chat');
+
 //-- Crear una nueva aplciacion web
 const app = express();
 
@@ -89,11 +98,19 @@ io.on('connect', (socket) => {
   //-- Incrementamos el numero de usuarios conectados
   num_user += 1;
 
+  //-- Enviar mensaje de bienvenida al usuario
+  socket.send(bienv_msg);
+
+  //-- Enviar mensaje de nuevo usuario a todos los usuarios
+  io.send(conec_msg);
+
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     //-- Decrementamos el numero de usuarios conectados
     num_user -= 1;
+    //-- Enviar mensaje de desconexión de usuario a todos los usuarios
+    io.send(desc_msg);
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
