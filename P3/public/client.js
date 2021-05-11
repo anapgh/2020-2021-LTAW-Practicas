@@ -2,12 +2,16 @@
 const display = document.getElementById("display");
 const msg_entry = document.getElementById("msg_entry");
 
+//-- Cargar sonido
+let silbido = new Audio('silbido.mp3');
+
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
 
 //-- Evento message
 socket.on("message", (msg)=>{
   display.innerHTML += '<p style="color:blue">' + msg + '</p>';
+  silbido.play();
 });
 
 //-- Al apretar el botón se envía un mensaje al servidor
