@@ -5,7 +5,7 @@ const express = require('express');
 const colors = require('colors');
 
 
-const PUERTO = 8080;
+const PUERTO = 9000;
 
 //-- Creamos la variable de numero de usuarios conectados
 let num_user = 0;
