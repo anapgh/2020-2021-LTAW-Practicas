@@ -6,6 +6,14 @@ const colors = require('colors');
 
 const PUERTO = 8080;
 
+//-- Creamos la variable de numero de usuarios
+let num_user = 0;
+
+//-- Creamos el objeto fecha
+const tiempo = Date.now();
+const fecha = new Date(tiempo);
+
+
 //-- Establecemos los mensajes a mostrar en el chat
 //-- Para el recurso '/help'
 let help_msg = ("Los comandos soportados son los siguientes:" +
@@ -14,7 +22,14 @@ let help_msg = ("Los comandos soportados son los siguientes:" +
                 "'/hello': El servidor te saluda" +
                 "'/date': Mostrar la fecha actual");
 
+//-- Para el recurso '/list'
+let list_msg = ("Número de usuarios conectados: " + num_user);
 
+//-- Para el recurso '/hello'
+let hello_msg = ("¡HOLA! Gracias por unirte al chat, espero que disfrutes");
+
+//-- Para el recurso '/date'
+let date_msg = ("Fecha actual: " + fecha.toUTCString());
                     
 
 //-- Crear una nueva aplciacion web
