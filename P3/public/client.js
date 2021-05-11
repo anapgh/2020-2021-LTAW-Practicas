@@ -18,7 +18,7 @@ const socket = io();
 
 //-- Evento message
 socket.on("message", (msg)=>{
-  display.innerHTML += '<p style="color:blue">' + msg + '</p>';
+  display.innerHTML += '<p style="color:black">' + msg + '</p>';
   if(!msg.includes('esta escribiendo...')){
     //-- Sonar cuando el mensaje sea distinto a estar escribiendo
     silbido.play();

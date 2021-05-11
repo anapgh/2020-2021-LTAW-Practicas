@@ -99,12 +99,13 @@ io.on('connect', (socket) => {
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
-
+    //-- Descarto el nombre de usuario
+    msg_text = msg.split(' ')[1];
     //-- Comprobar si el mensaje es un recurso
-    if(msg.startsWith('/')){
-      console.log("Recurso recibido!: " + msg.red);
+    if(msg_text.startsWith('/')){
+      console.log("Recurso recibido!: " + msg_text.red);
       //-- Comprobamos el recurso solicitado
-      data = check_command(msg);
+      data = check_command(msg_text);
       socket.send(data);
     }else{
       //-- Reenviarlo a todos los clientes conectados
