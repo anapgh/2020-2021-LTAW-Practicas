@@ -1,11 +1,13 @@
 //-- Elementos del interfaz
 const display = document.getElementById("display");
 const msg_entry = document.getElementById("msg_entry");
+const msg_nick = document.getElementById("nick");
+
+//-- Variable del nickname
+let nickname = null;
 
 //-- Variable que muestra si se escribe
 let user_write = false;
-//-- Mensaje de estar escribiendo
-const write_msg = ('Un usuario esta escribiendo...');
 
 //-- Cargar sonido
 let silbido = new Audio('silbido.mp3');
@@ -13,10 +15,11 @@ let silbido = new Audio('silbido.mp3');
 //-- Crear un websocket. Se establece la conexión con el servidor
 const socket = io();
 
+
 //-- Evento message
 socket.on("message", (msg)=>{
   display.innerHTML += '<p style="color:blue">' + msg + '</p>';
-  if(msg != write_msg){
+  if(!msg.includes('esta escribiendo...')){
     //-- Sonar cuando el mensaje sea distinto a estar escribiendo
     silbido.play();
   }
@@ -25,10 +28,10 @@ socket.on("message", (msg)=>{
 //-- Al apretar el botón se envía un mensaje al servidor
 msg_entry.onchange = () => {
   //-- Si hay valor en la caja, enviar el valor
-  if (msg_entry.value)
-    socket.send(msg_entry.value);
+  if (msg_entry.value){
+    socket.send(nickname + ': ' + msg_entry.value);
     user_write = false;
-  
+  }
   //-- Borrar el mensaje actual
   msg_entry.value = "";
 }
@@ -38,6 +41,17 @@ msg_entry.oninput = () => {
   //-- Si esta escribiendo
   if(!user_write){
     user_writing = true;
-    socket.send(write_msg);
+    socket.send('El usuario ' + nickname + ' esta escribiendo...');
   }
+}
+
+console.log(nickname)
+
+//-- Al introducir el botón del nick se le asigna
+msg_nick.onchange = () => {
+  if(msg_nick.value){
+    nickname = msg_nick.value;
+  }
+  //(msg_nick.parentNode).removeChild(msg_nick);
+  console.log(nickname);
 }
