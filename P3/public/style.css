@@ -1,0 +1,94 @@
+@font-face {
+    font-family: "comicate";
+    src: url(letra/COMICATE.TTF);
+}
+@font-face {
+    font-family: "message";
+    src: url(letra/4B.TTF);
+}
+@font-face {
+    font-family: "phoenix";
+    src: url(letra/Phoenix.ttf);
+}
+
+body{
+    background-image: url(imagenes/fondo.jpg);
+    background-size: cover;
+    text-align: center;
+    margin-top: 70px;
+}
+
+h2{
+    font-family: "comicate";
+    font-size: 80px;
+    width: 1160px;
+    height: 50px;
+}
+
+#total{
+    background-color:rgba(0, 225, 255, 0.664);
+    border: solid 20px;
+    border-color: rgba(228, 138, 21, 0.664);
+    border-radius: 40px;
+    text-align: center;
+    margin: 100px;
+    font-family: "phoenix";
+    width: 900px;
+    height: 610px;
+    position: relative;
+}
+
+#cuadrado-nick{
+    background-color: rgba(255, 245, 238, 0.63);
+    border-radius: 10px;
+    padding-top: 5px;
+    margin-top: 5px;
+    margin-left: 180px;
+    margin-right: 180px;
+    width: 550px;
+    height: 130px;
+}
+
+h4{
+    font-size: 25px;
+}
+
+h3{
+    font-size: 30px;
+}
+
+#chat{
+    background-color: rgba(255, 245, 238, 0.63); 
+    border-radius: 15px;
+    padding-top:5px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 110px;
+    margin-right: 110px;
+    margin-bottom: 25px;
+    width: 700px;
+    height: 400px;
+}
+
+#display{
+    border: solid 5px;
+    border-color: rgba(228, 138, 21, 0.4);
+    margin-left: 57px;
+    margin-right: 57px;
+    padding:10px;
+    font-family: "message";
+    width: 570px;
+    height: 180px;
+    overflow: auto;
+}
+
+input{
+    border-radius: 10px; 
+    font-family: "message";
+}
+
+#msg_entry{
+    height: 50px;
+    width: 360px; 
+    text-align: center;
+}
