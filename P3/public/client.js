@@ -4,7 +4,7 @@ const msg_entry = document.getElementById("msg_entry");
 const msg_nick = document.getElementById("nick");
 
 //-- Variable del nickname
-let nickname = null;
+let nickname = 'Desconocido';
 
 //-- Variable que muestra si se escribe
 let user_write = false;
