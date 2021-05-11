@@ -6,7 +6,7 @@ const colors = require('colors');
 
 const PUERTO = 8080;
 
-//-- Creamos la variable de numero de usuarios
+//-- Creamos la variable de numero de usuarios conectados
 let num_user = 0;
 
 //-- Creamos el objeto fecha
@@ -16,21 +16,23 @@ const fecha = new Date(tiempo);
 
 //-- Establecemos los mensajes a mostrar en el chat
 //-- Para el recurso '/help'
-let help_msg = ("Los comandos soportados son los siguientes:" +
-                "'/help': Mostrar los comandos soportados" +
-                "'/list': Mostrar numero de usuarios conectados" +
-                "'/hello': El servidor te saluda" +
-                "'/date': Mostrar la fecha actual");
+let help_msg = ("Los comandos soportados son los siguientes:<br>" +
+                ">>> <b>'/help'</b>: Mostrar los comandos soportados<br>" +
+                ">>> <b>'/list'</b>: Mostrar numero de usuarios conectados<br>" +
+                ">>> <b>'/hello'</b>: El servidor te saluda<br>" +
+                ">>> <b>'/date'</b>: Mostrar la fecha actual<br>");
 
 //-- Para el recurso '/list'
-let list_msg = ("Número de usuarios conectados: " + num_user);
+let list_msg = ("Número de usuarios conectados: ");
 
 //-- Para el recurso '/hello'
 let hello_msg = ("¡HOLA! Gracias por unirte al chat, espero que disfrutes");
 
 //-- Para el recurso '/date'
-let date_msg = ("Fecha actual: " + fecha.toUTCString());
+let date_msg = ("Fecha actual: <b>" + fecha.toUTCString()+ "</b>");
                     
+//-- Para un recurso distinto
+let error_msg = ("Comando no reconocido");
 
 //-- Crear una nueva aplciacion web
 const app = express();
@@ -56,17 +58,24 @@ app.use(express.static('public'));
 
 //-- Comprobar los comandos especiales
 function check_command(msg){
+  let data;
   if(msg == '/help'){
-    console.log('Mostrar Comandos soportados');
+    console.log('>>> Mostrar Comandos soportados');
+    data = help_msg;
   }else if(msg == '/list'){
-    console.log('Numero de usuarios conectados');
+    console.log('>>> Numero de usuarios conectados');
+    data = list_msg + num_user;
   }else if(msg == '/hello'){
-    console.log('Servidor  devuelve el saludo');
+    console.log('>>> Servidor  devuelve el saludo');
+    data = hello_msg;
   }else if(msg == '/date'){
-    console.log('Mostrar la fecha');
+    console.log('>>> Mostrar la fecha');
+    data = date_msg;
   }else{
-    console.log('Comando no reconocido');
+    console.log('>>> Comando no reconocido');
+    data = error_msg;
   };
+  return(data);
 };
 
 //------------------- GESTION SOCKETS IO
@@ -76,14 +85,12 @@ io.on('connect', (socket) => {
   console.log('** NUEVA CONEXIÓN **'.yellow);
   //-- Incrementamos el numero de usuarios conectados
   num_user += 1;
-  console.log('Numero de usuarios conectados: ' + num_user);
 
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     //-- Decrementamos el numero de usuarios conectados
     num_user -= 1;
-    console.log('Numero de usuarios conectados: ' + num_user);
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
@@ -92,10 +99,10 @@ io.on('connect', (socket) => {
 
     //-- Comprobar si el mensaje es un recurso
     if(msg.startsWith('/')){
-      console.log(msg.red);
-      socket.send(msg);
+      console.log("Recurso recibido!: " + msg.red);
       //-- Comprobamos el recurso solicitado
-      check_command(msg);
+      data = check_command(msg);
+      socket.send(data);
     }else{
       //-- Reenviarlo a todos los clientes conectados
       io.send(msg);
