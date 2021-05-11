@@ -85,6 +85,7 @@ h3{
 input{
     border-radius: 10px; 
     font-family: "message";
+    text-align: center;
 }
 
 #msg_entry{
