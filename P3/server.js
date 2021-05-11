@@ -111,9 +111,7 @@ io.on('connect', (socket) => {
       //-- Reenviarlo a todos los clientes conectados
       io.send(msg);
     }
-    
   });
-
 });
 
 //-- Lanzar el servidor HTTP

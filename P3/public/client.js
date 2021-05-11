@@ -40,10 +40,10 @@ msg_entry.onchange = () => {
 msg_entry.oninput = () => {
   //-- Si esta escribiendo
   if(!user_write){
-    user_writing = true;
+    user_write = true;
     socket.send('El usuario ' + nickname + ' esta escribiendo...');
-  }
-}
+  };
+};
 
 console.log(nickname)
 
