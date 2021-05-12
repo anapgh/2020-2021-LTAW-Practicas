@@ -3,6 +3,8 @@ const socket = require('socket.io');
 const http = require('http');
 const express = require('express');
 const colors = require('colors');
+const electron = require('electron');
+const ip = require('ip');
 
 
 const PUERTO = 9000;
@@ -135,3 +137,34 @@ io.on('connect', (socket) => {
 //-- ¡Que empiecen los juegos de los WebSockets!
 server.listen(PUERTO);
 console.log("Escuchando en puerto: " + PUERTO);
+
+electron.app.on('ready', () => {
+    console.log("Evento Ready!");
+
+    //-- Crear la ventana principal de nuestra aplicación
+    win = new electron.BrowserWindow({
+        width: 600,  //-- Anchura 
+        height: 400,  //-- Altura
+
+        //-- Permitir que la ventana tenga ACCESO AL SISTEMA
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+      }
+
+    });
+
+    //-- Cargar interfaz gráfica en HTML
+    win.loadFile("index.html");
+
+    //-- Obtener versiones
+    v_node = process.versions.node;
+    v_chrome = process.versions.chrome;
+    v_electron = process.versions.electron;
+
+    //-- Obtener direccion IP
+    dir_ip = ip.address();
+
+    
+
+});
