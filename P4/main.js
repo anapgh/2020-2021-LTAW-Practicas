@@ -9,6 +9,10 @@ const ip = require('ip');
 
 const PUERTO = 9000;
 
+//-- Variable para acceder a la ventana principal
+//-- Se pone aquí para que sea global al módulo principal
+let win = null;
+
 //-- Creamos la variable de numero de usuarios conectados
 let num_user = 0;
 
@@ -100,6 +104,9 @@ io.on('connect', (socket) => {
   //-- Incrementamos el numero de usuarios conectados
   num_user += 1;
 
+  //-- Enviar numero de usuarios al renderer
+  win.webContents.send('users', num_user);
+
   //-- Enviar mensaje de bienvenida al usuario
   socket.send(bienv_msg);
 
@@ -111,6 +118,10 @@ io.on('connect', (socket) => {
     console.log('** CONEXIÓN TERMINADA **'.yellow);
     //-- Decrementamos el numero de usuarios conectados
     num_user -= 1;
+
+    //-- Enviar numero de usuarios al renderer
+    win.webContents.send('users', num_user);
+
     //-- Enviar mensaje de desconexión de usuario a todos los usuarios
     io.send(desc_msg);
   });  
@@ -169,7 +180,7 @@ electron.app.on('ready', () => {
     //-- El puerto tambien
 
     //-- Reagrupar los datos a enviar
-    let datos = [v_node, v_chrome, v_electron, num_user, dir_ip, PUERTO, fichero];
+    let datos = [v_node, v_chrome, v_electron, dir_ip, PUERTO, fichero];
 
     //-- Esperar a que la página se cargue  con el evento 'ready-to-show'
     win.on('ready-to-show', () => {

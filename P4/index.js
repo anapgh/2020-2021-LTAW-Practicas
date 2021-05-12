@@ -12,7 +12,9 @@ const num_usuarios = document.getElementById("info4");
 const dir_ip = document.getElementById("info5");
 
 
-//-- Mensaje recibido del proceso MAIN
+//------ Mensajes recibidos del proceso MAIN ------
+
+//-- Información del sistema
 electron.ipcRenderer.on('informacion', (event, message) => {
     console.log("Recibido: " + message);
 
@@ -20,7 +22,11 @@ electron.ipcRenderer.on('informacion', (event, message) => {
     v_node.textContent = message[0];
     v_chrome.textContent = message[1];
     v_electron.textContent = message[2];
-    num_usuarios.textContent = message[3];
-    dir_ip.textContent = ("http://" + message[4] + ":" + message[5] + "/" + message[6]);
+    dir_ip.textContent = ("http://" + message[3] + ":" + message[4] + "/" + message[5]);
 });
 
+//-- Numero de usuarios
+electron.ipcRenderer.on('users', (event, message) => {
+    console.log("Recibido: " + message);
+    num_usuarios.textContent = message;
+});
