@@ -10,6 +10,7 @@ const v_chrome = document.getElementById("info2");
 const v_electron = document.getElementById("info3");
 const num_usuarios = document.getElementById("info4");
 const dir_ip = document.getElementById("info5");
+const boton = document.getElementById("btn_test");
 const mensajes = document.getElementById("display");
 
 
@@ -37,3 +38,11 @@ electron.ipcRenderer.on('msg_client', (event, message) => {
     console.log("Recibido: " + message);
     mensajes.innerHTML += message + "<br>";
 });
+
+//------ Mensajes enviados al proceso MAIN ------
+boton.onclick = () => {
+    console.log("Botón apretado!");
+
+    //-- Enviar mensaje al proceso principal
+    electron.ipcRenderer.invoke('test', "MENSAJE DE PRUEBA: Boton apretado");
+};

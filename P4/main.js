@@ -160,6 +160,7 @@ io.on('connect', (socket) => {
 server.listen(PUERTO);
 console.log("Escuchando en puerto: " + PUERTO);
 
+//------ Crear la app de electron ----
 electron.app.on('ready', () => {
     console.log("Evento Ready!");
 
@@ -200,4 +201,11 @@ electron.app.on('ready', () => {
         win.webContents.send('informacion', datos);
     });
 
+});
+
+//----- Mensajes recibidos del renderizado --------
+
+//-- Esperar a recibir los mensajes de botón apretado (Test)
+electron.ipcMain.handle('test', (event, msg) => {
+    console.log("-> Mensaje: " + msg);
 });
