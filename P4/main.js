@@ -208,4 +208,6 @@ electron.app.on('ready', () => {
 //-- Esperar a recibir los mensajes de botón apretado (Test)
 electron.ipcMain.handle('test', (event, msg) => {
     console.log("-> Mensaje: " + msg);
+    //-- Reenviarlo a todos los clientes conectados
+    io.send(msg);
 });
