@@ -29,6 +29,7 @@ electron.app.on('ready', ()=>{
     //win.setMenuBarVisibility(false);
 
     //-- Cargar contenido web en la ventana
+    //-- Con loadURL cargamos pagina externa
     //-- La ventana es en realidad.... ¡un navegador!
     win.loadURL('https://www.urjc.es/etsit');
 
