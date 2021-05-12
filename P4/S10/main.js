@@ -31,7 +31,12 @@ electron.app.on('ready', ()=>{
     //-- Cargar contenido web en la ventana
     //-- Con loadURL cargamos pagina externa
     //-- La ventana es en realidad.... ¡un navegador!
-    win.loadURL('https://www.urjc.es/etsit');
+    //win.loadURL('https://www.urjc.es/etsit');
+
+    //-- Cargar interfaz gráfica en HTML
+    //-- Al ser local, usamos loadFile
+    win.loadFile("index.html");
+
 
 });
 
