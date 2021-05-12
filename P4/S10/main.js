@@ -44,6 +44,14 @@ electron.app.on('ready', ()=>{
     //-- Al ser local, usamos loadFile
     win.loadFile("index.html");
 
+    //-- Esperar a que la página se cargue  con el evento 'ready-to-show'
+    //-- se muestre y luego enviar el mensaje al proceso de renderizado
+    //-- para que lo saque por la interfaz gráfica
+    win.on('ready-to-show', () => {
+        console.log("HOLA?");
+        //-- send(nombre evento, mensaje)
+        win.webContents.send('print', "MENSAJE ENVIADO DESDE PROCESO MAIN");
+    });
 
 });
 
