@@ -155,16 +155,27 @@ electron.app.on('ready', () => {
     });
 
     //-- Cargar interfaz gráfica en HTML
-    win.loadFile("index.html");
+    let fichero = "index.html"
+    win.loadFile(fichero);
 
+    //-- Obtener informacion a enviar al renderizador
     //-- Obtener versiones
     v_node = process.versions.node;
     v_chrome = process.versions.chrome;
     v_electron = process.versions.electron;
-
     //-- Obtener direccion IP
     dir_ip = ip.address();
+    //-- Numero de usuario ya lo tenemos calculado
+    //-- El puerto tambien
 
-    
+    //-- Reagrupar los datos a enviar
+    let datos = [v_node, v_chrome, v_electron, num_user, dir_ip, PUERTO, fichero];
+
+    //-- Esperar a que la página se cargue  con el evento 'ready-to-show'
+    win.on('ready-to-show', () => {
+        console.log("Enviando datos...");
+        //-- send(nombre evento, mensaje)
+        win.webContents.send('informacion', datos);
+    });
 
 });
