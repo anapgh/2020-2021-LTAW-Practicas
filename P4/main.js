@@ -5,6 +5,7 @@ const express = require('express');
 const colors = require('colors');
 const electron = require('electron');
 const ip = require('ip');
+const process = require('process');
 
 
 const PUERTO = 9000;
@@ -186,13 +187,20 @@ electron.app.on('ready', () => {
     v_node = process.versions.node;
     v_chrome = process.versions.chrome;
     v_electron = process.versions.electron;
+    //-- Obtener arquitectura
+    arch = process.arch;
+    //-- Obtener plataforma
+    platform = process.platform;
+    //-- obtener directorio
+    direct = process.cwd();
     //-- Obtener direccion IP
     dir_ip = ip.address();
     //-- Numero de usuario ya lo tenemos calculado
     //-- El puerto tambien
 
     //-- Reagrupar los datos a enviar
-    let datos = [v_node, v_chrome, v_electron, dir_ip, PUERTO, fichero];
+    let datos = [v_node, v_chrome, v_electron, arch, platform, direct,
+                dir_ip, PUERTO, fichero];
 
     //-- Esperar a que la página se cargue  con el evento 'ready-to-show'
     win.on('ready-to-show', () => {

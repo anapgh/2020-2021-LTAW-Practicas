@@ -9,8 +9,11 @@ console.log("Hola desde el proceso de la web...");
 const v_node = document.getElementById("info1");
 const v_chrome = document.getElementById("info2");
 const v_electron = document.getElementById("info3");
-const num_usuarios = document.getElementById("info4");
-const dir_ip = document.getElementById("info5");
+const archi = document.getElementById("info4");
+const plataf = document.getElementById("info5");
+const direct = document.getElementById("info6");
+const num_usuarios = document.getElementById("users");
+const dir_ip = document.getElementById("ip");
 const code = document.getElementById("qrcode");
 const boton = document.getElementById("btn_test");
 const mensajes = document.getElementById("display");
@@ -26,7 +29,10 @@ electron.ipcRenderer.on('informacion', (event, message) => {
     v_node.textContent = message[0];
     v_chrome.textContent = message[1];
     v_electron.textContent = message[2];
-    url = ("http://" + message[3] + ":" + message[4] + "/" + message[5]);
+    archi.textContent = message[3];
+    plataf.textContent = message[4];
+    direct.textContent = message[5]
+    url = ("http://" + message[6] + ":" + message[7] + "/" + message[8]);
     dir_ip.textContent = url;
 
     //-- Generar el codigo qr de la url
