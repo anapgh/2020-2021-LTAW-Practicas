@@ -10,6 +10,7 @@ const v_chrome = document.getElementById("info2");
 const v_electron = document.getElementById("info3");
 const num_usuarios = document.getElementById("info4");
 const dir_ip = document.getElementById("info5");
+const mensajes = document.getElementById("display");
 
 
 //------ Mensajes recibidos del proceso MAIN ------
@@ -29,4 +30,10 @@ electron.ipcRenderer.on('informacion', (event, message) => {
 electron.ipcRenderer.on('users', (event, message) => {
     console.log("Recibido: " + message);
     num_usuarios.textContent = message;
+});
+
+//-- Mensajes de los clientes
+electron.ipcRenderer.on('msg_client', (event, message) => {
+    console.log("Recibido: " + message);
+    mensajes.innerHTML += message + "<br>";
 });

@@ -113,6 +113,9 @@ io.on('connect', (socket) => {
   //-- Enviar mensaje de nuevo usuario a todos los usuarios
   io.send(conec_msg);
 
+  //-- Enviar al render mensaje de conexion
+  win.webContents.send('msg_client', conec_msg);
+
   //-- Evento de desconexión
   socket.on('disconnect', function(){
     console.log('** CONEXIÓN TERMINADA **'.yellow);
@@ -124,11 +127,18 @@ io.on('connect', (socket) => {
 
     //-- Enviar mensaje de desconexión de usuario a todos los usuarios
     io.send(desc_msg);
+
+    //-- Enviar al render mensaje de desconexion
+    win.webContents.send('msg_client', desc_msg);
   });  
 
   //-- Mensaje recibido: Reenviarlo a todos los clientes conectados
   socket.on("message", (msg)=> {
     console.log("Mensaje Recibido!: " + msg.blue);
+
+    //-- Enviar al render
+    win.webContents.send('msg_client', msg);
+
     //-- Descarto el nombre de usuario
     msg_text = msg.split(' ')[1];
     //-- Comprobar si el mensaje es un recurso
@@ -137,6 +147,7 @@ io.on('connect', (socket) => {
       //-- Comprobamos el recurso solicitado
       data = check_command(msg_text);
       socket.send(data);
+
     }else{
       //-- Reenviarlo a todos los clientes conectados
       io.send(msg);
