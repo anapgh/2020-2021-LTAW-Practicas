@@ -8,21 +8,20 @@
         <!-- Con esto se elimina el aviso de seguridad: Insecure Content-Security-Policy -->
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:" />
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="index.css">
         <script src="index.js" defer></script>
 
         <title>Practica 4: Aplicación Chat con electron</title>
     </head>
     <body>
-        <h1>INTERFAZ GRÁFICA</h1>
+        <h1>HOME CHAT SERVER</h1>
 
         <div id="left">
-            <hr>
-                <h2>Información:</h2>
+            <h2>Información:</h2>
                 <ul>
-                    <li>Versión de Node: <span id="info1" class="blue"></span> </li>
-                    <li>Versión de Chrome: <span id="info2" class="blue"></span></li>
-                    <li>Versión Electron: <span id="info3" class="blue"></span></li>
+                    <li>Version de Node: <span id="info1" class="blue"></span> </li>
+                    <li>Version de Chrome: <span id="info2" class="blue"></span></li>
+                    <li>Version Electron: <span id="info3" class="blue"></span></li>
                     <li>Arquitectura: <span id="info4" class="blue"></span> </li>
                     <li>Plataforma: <span id="info5" class="blue"></span></li>
                     <li>Diretorio: <span id="info6" class="blue"></span></li>
@@ -35,10 +34,11 @@
                 <p id="ip"></p>
                 <br>
                 <img src="" id="qrcode">
+                <br>
         </div>
         <div id="right">
             <h2>Pruebas</h2>
-            <p><input type="button" value="Test" id="btn_test"></p>
+            <p><input type="button" value="Message" id="btn_test"></p>
             <hr>
             <h2>Mensajes:</h2>
             <p id="display"></p>
