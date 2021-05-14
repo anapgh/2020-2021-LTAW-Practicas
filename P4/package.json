@@ -16,11 +16,8 @@
     },
     "build": {
         "appId": "mi-electron-app-1-id",
-        "linux": {
-            "target": [
-                "AppImage"
-            ],
-            "category": "Utility"
+        "win": {
+            "target": "NSIS"
         }
     },
     "devDependencies": {
